@@ -1,10 +1,10 @@
 "use client";
 
+import ImageCollage from "@/components/ImageCollage";
 import { useRef, useEffect, useState, type CSSProperties } from "react";
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -38,18 +38,12 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="bg-[#F7F3EE] py-24 lg:py-32"
+      className="bg-[#F7F3EE] py-16 md:py-24 lg:py-32"
     >
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-20 lg:px-10">
-        <div
-          ref={imageRef}
-          className="aspect-[3/4] w-full"
-          style={{
-            background:
-              "linear-gradient(160deg, #1C2E20 0%, #2D4A35 40%, #1C2E20 100%)",
-            ...slideStyle(true),
-          }}
-        />
+        <div className="relative" style={slideStyle(true)}>
+          <ImageCollage />
+        </div>
 
         <div ref={textRef} style={slideStyle(false)}>
           <p
@@ -109,8 +103,8 @@ export default function About() {
           </p>
 
           <a
-            href="#about"
-            className="group inline-flex items-center gap-2 border-b border-[#1A1A1A] pb-1 text-[#1A1A1A] transition-colors duration-300 hover:border-[#C4963A] hover:text-[#C4963A]"
+            href="/about"
+            className="btn-alive group inline-flex items-center gap-2 border-b border-[#1A1A1A] pb-1 text-[#1A1A1A] transition-colors duration-300 hover:border-[#C4963A] hover:text-[#C4963A]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "13px",

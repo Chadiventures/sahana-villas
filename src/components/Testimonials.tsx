@@ -1,33 +1,85 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface Testimonial {
   quote: string;
   author: string;
   meta: string;
+  platform: "airbnb" | "tripadvisor" | "facebook";
 }
 
 const testimonials: Testimonial[] = [
   {
     quote:
       "Our family of five had the most wonderful stay. The kids lived in the pool while we enjoyed the spacious living areas. The staff made us feel like VIPs from the moment we arrived.",
-    author: "The Morrison Family",
+    author: "The Andersons",
     meta: "Family · Sydney, Australia",
+    platform: "airbnb",
   },
   {
     quote:
-      "A perfect honeymoon escape. Waking up to tropical birdsong, swimming under the stars, and walking to incredible restaurants just minutes away. Pure magic.",
-    author: "Erik & Astrid",
+      "A perfect escape for two. Waking up to tropical birdsong, swimming under the stars, and walking to incredible restaurants just minutes away. Pure magic.",
+    author: "Marcus and Clara",
     meta: "Couple · Stockholm, Sweden",
+    platform: "tripadvisor",
   },
   {
     quote:
       "We came as a group of friends and left as family. The villa had everything we needed for a week of laughter, long dinners, and unforgettable sunsets by the pool.",
-    author: "James & Friends",
-    meta: "Group · London, UK",
+    author: "Sophie and the Girls",
+    meta: "Friends · London, UK",
+    platform: "facebook",
   },
 ];
+
+function PlatformLogo({ platform }: { platform: Testimonial["platform"] }) {
+  if (platform === "airbnb") {
+    return (
+      <Image
+        src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg"
+        alt="Airbnb"
+        width={48}
+        height={48}
+        className="object-contain"
+        style={{
+          opacity: 0.5,
+          filter: "brightness(0) saturate(100%)",
+        }}
+      />
+    );
+  }
+
+  if (platform === "tripadvisor") {
+    return (
+      <Image
+        src="/tripadvisor.svg"
+        alt="TripAdvisor"
+        width={80}
+        height={20}
+        className="object-contain"
+        style={{
+          opacity: 0.5,
+          filter: "brightness(0) saturate(100%)",
+        }}
+      />
+    );
+  }
+
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="#1877F2"
+      style={{ opacity: 0.5 }}
+      aria-hidden="true"
+    >
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+    </svg>
+  );
+}
 
 function getPosition(index: number, activeIndex: number, total: number) {
   let diff = index - activeIndex;
@@ -47,9 +99,9 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="overflow-hidden bg-[#1C2E20] py-24 lg:py-32">
+    <section className="overflow-hidden bg-[#1C2E20] py-12 md:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="mb-16 text-center">
+        <div className="mb-10 text-center md:mb-16">
           <p
             className="mb-3 text-[#C4963A]"
             style={{
@@ -75,10 +127,7 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        <div
-          className="relative flex items-center justify-center"
-          style={{ minHeight: "380px" }}
-        >
+        <div className="relative flex min-h-[280px] items-center justify-center md:min-h-[380px]">
           {testimonials.map((testimonial, index) => {
             const position = getPosition(
               index,
@@ -93,7 +142,7 @@ export default function Testimonials() {
             return (
               <article
                 key={testimonial.author}
-                className="absolute px-4"
+                className={`absolute px-4 ${position !== 0 ? "hidden md:block" : "w-full max-w-full md:w-auto"}`}
                 style={{
                   width: isActive ? "min(640px, 90vw)" : "min(480px, 70vw)",
                   transform: `translateX(${position * 110}%) scale(${isActive ? 1 : 0.85})`,
@@ -104,14 +153,7 @@ export default function Testimonials() {
                   pointerEvents: isActive ? "auto" : "none",
                 }}
               >
-                <div
-                  className="bg-white p-8 lg:p-12"
-                  style={{
-                    boxShadow: isActive
-                      ? "0 20px 60px rgba(0, 0, 0, 0.25)"
-                      : "0 8px 24px rgba(0, 0, 0, 0.15)",
-                  }}
-                >
+                <div className="card-alive relative bg-white p-8 lg:p-12">
                   <div
                     className="mb-6 text-[#C4963A]"
                     aria-label="5 stars"
@@ -124,7 +166,9 @@ export default function Testimonials() {
                     className="mb-8 text-[#1C2E20]"
                     style={{
                       fontFamily: "var(--font-cormorant)",
-                      fontSize: isActive ? "clamp(1.25rem, 2.5vw, 1.75rem)" : "1rem",
+                      fontSize: isActive
+                        ? "clamp(1.25rem, 2.5vw, 1.75rem)"
+                        : "1rem",
                       fontWeight: 300,
                       fontStyle: "italic",
                       lineHeight: 1.7,
@@ -133,7 +177,7 @@ export default function Testimonials() {
                     &ldquo;{testimonial.quote}&rdquo;
                   </blockquote>
 
-                  <div className="border-t border-[#1C2E20]/10 pt-6">
+                  <div className="border-t border-[#1C2E20]/10 pt-6 pr-20">
                     <p
                       className="text-[#1A1A1A]"
                       style={{
@@ -154,6 +198,10 @@ export default function Testimonials() {
                     >
                       {testimonial.meta}
                     </p>
+                  </div>
+
+                  <div className="absolute right-6 bottom-6">
+                    <PlatformLogo platform={testimonial.platform} />
                   </div>
                 </div>
               </article>

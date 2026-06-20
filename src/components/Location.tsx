@@ -1,5 +1,5 @@
 const highlights = [
-  "5 min walk to Seminyak Beach",
+  "15 min walk to Seminyak Beach and KuDeTa",
   "Walking distance to top restaurants and cafes",
   "Easy access to Petitenget Temple and Oberoi Street",
   "30 min from Ngurah Rai International Airport",
@@ -7,9 +7,9 @@ const highlights = [
 
 export default function Location() {
   return (
-    <section id="contact" className="bg-[#F7F3EE] py-24 lg:py-32">
+    <section id="contact" className="bg-[#F7F3EE] py-12 md:py-24 lg:py-32">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-20 lg:px-10">
-        <div className="aspect-square w-full overflow-hidden lg:aspect-[4/5]">
+        <div className="h-[300px] w-full overflow-hidden md:aspect-square md:h-auto lg:aspect-[4/5]">
           <iframe
             title="Sahana Villas Seminyak location"
             src="https://maps.google.com/maps?q=-8.685326,115.163366&z=15&output=embed"

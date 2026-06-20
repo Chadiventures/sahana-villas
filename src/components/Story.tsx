@@ -1,50 +1,86 @@
+"use client";
+
+const VIDEO_SRC =
+  "https://videos.pexels.com/video-files/1093662/1093662-hd_1920_1080_30fps.mp4";
+
 export default function Story() {
   return (
     <section
       id="families"
-      className="bg-[#1C2E20] py-28 lg:py-36"
+      className="relative w-full overflow-hidden"
+      style={{ minHeight: "400px" }}
     >
-      <div className="mx-auto max-w-4xl px-6 text-center lg:px-10">
-        <div className="relative flex items-center justify-center gap-4 md:gap-8">
-          <span
-            className="shrink-0 text-[#C4963A]/30 select-none"
-            style={{
-              fontFamily: "var(--font-cormorant)",
-              fontSize: "clamp(4rem, 12vw, 8rem)",
-              fontWeight: 300,
-              lineHeight: 1,
-            }}
-            aria-hidden="true"
-          >
-            &ldquo;
-          </span>
+      <video
+        src={VIDEO_SRC}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        onLoadedData={() => {
+          console.log("Story video loaded successfully");
+        }}
+        onError={(e) => {
+          console.error("Story video failed to load:", VIDEO_SRC, e);
+        }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+      />
 
-          <blockquote
-            className="text-[#F7F3EE]"
-            style={{
-              fontFamily: "var(--font-cormorant)",
-              fontSize: "clamp(1.5rem, 3.5vw, 2.5rem)",
-              fontWeight: 300,
-              fontStyle: "italic",
-              lineHeight: 1.5,
-            }}
-          >
-            Not a hotel. Not a resort. Simply your home in Bali.
-          </blockquote>
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundColor: "rgba(28, 46, 32, 0.70)",
+        }}
+      />
 
-          <span
-            className="shrink-0 text-[#C4963A]/30 select-none"
-            style={{
-              fontFamily: "var(--font-cormorant)",
-              fontSize: "clamp(4rem, 12vw, 8rem)",
-              fontWeight: 300,
-              lineHeight: 1,
-            }}
-            aria-hidden="true"
-          >
-            &rdquo;
-          </span>
-        </div>
+      <div
+        className="relative z-10 mx-auto max-w-4xl px-6 py-[60px] text-center md:px-12 md:py-[100px]"
+      >
+        <span
+          className="block text-[#C4963A] select-none"
+          style={{
+            fontFamily: "var(--font-cormorant)",
+            fontSize: "120px",
+            fontWeight: 300,
+            lineHeight: 0.8,
+          }}
+          aria-hidden="true"
+        >
+          &ldquo;
+        </span>
+
+        <blockquote
+          className="my-6 text-white"
+          style={{
+            fontFamily: "var(--font-cormorant)",
+            fontSize: "clamp(28px, 5vw, 42px)",
+            fontWeight: 300,
+            fontStyle: "italic",
+            lineHeight: 1.4,
+          }}
+        >
+          Not a hotel. Not a resort. Simply your home in Bali.
+        </blockquote>
+
+        <span
+          className="block text-[#C4963A] select-none"
+          style={{
+            fontFamily: "var(--font-cormorant)",
+            fontSize: "120px",
+            fontWeight: 300,
+            lineHeight: 0.8,
+          }}
+          aria-hidden="true"
+        >
+          &rdquo;
+        </span>
       </div>
     </section>
   );

@@ -110,9 +110,9 @@ function StatusBadge({ status }: { status: BookingStatus }) {
 
 export default function BookPage() {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen flex-col md:flex-row">
       <aside
-        className="flex w-64 shrink-0 flex-col px-6 py-8"
+        className="hidden w-64 shrink-0 flex-col px-6 py-8 md:flex"
         style={{ backgroundColor: "#1C2E20" }}
       >
         <Link href="/" className="mb-12">
@@ -148,12 +148,37 @@ export default function BookPage() {
         </nav>
       </aside>
 
-      <main className="flex-1 bg-[#F7F3EE] px-8 py-10 lg:px-12">
+      <div
+        className="flex items-center justify-between px-6 py-4 md:hidden"
+        style={{ backgroundColor: "#1C2E20" }}
+      >
+        <Link href="/">
+          <img
+            src="/logo.png"
+            alt="Sahana Villas"
+            className="h-8 w-auto brightness-0 invert"
+          />
+        </Link>
+        <span
+          className="text-[#C4963A]"
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontSize: "11px",
+            fontWeight: 500,
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+          }}
+        >
+          Booking Requests
+        </span>
+      </div>
+
+      <main className="flex-1 bg-[#F7F3EE] px-6 py-8 md:px-8 lg:px-12">
         <h1
           className="mb-8 text-[#1A1A1A]"
           style={{
             fontFamily: "var(--font-cormorant)",
-            fontSize: "2.5rem",
+            fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
             fontWeight: 300,
             lineHeight: 1.2,
           }}
@@ -292,7 +317,7 @@ export default function BookPage() {
                     <div className="flex gap-2">
                       <button
                         type="button"
-                        className="px-4 py-2 text-white transition-opacity duration-200 hover:opacity-80"
+                        className="min-h-[44px] px-4 py-2 text-white transition-opacity duration-200 hover:opacity-80"
                         style={{
                           backgroundColor: "#5A8A6A",
                           fontFamily: "var(--font-inter)",
@@ -306,7 +331,7 @@ export default function BookPage() {
                       </button>
                       <button
                         type="button"
-                        className="border px-4 py-2 transition-colors duration-200 hover:bg-[#B07B72]/10"
+                        className="min-h-[44px] border px-4 py-2 transition-colors duration-200 hover:bg-[#B07B72]/10"
                         style={{
                           borderColor: "#B07B72",
                           color: "#B07B72",

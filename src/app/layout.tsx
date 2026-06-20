@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import TopBanner from "@/components/TopBanner";
 import Header from "@/components/Header";
 import ChatBot from "@/components/ChatBot";
 import "./globals.css";
@@ -31,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
       <body className="antialiased">
+        <TopBanner />
         <Header />
         {children}
         <ChatBot />

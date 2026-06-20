@@ -32,6 +32,7 @@ body {
   background: var(--cream);
   color: var(--text);
   font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
 }
 
 .carousel-scroll {
@@ -41,6 +42,24 @@ body {
 
 .carousel-scroll::-webkit-scrollbar {
   display: none;
+}
+
+.carousel-viewport:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+.carousel-track {
+  width: max-content;
+  animation: carousel-marquee 30s linear infinite;
+}
+
+@keyframes carousel-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes scroll-pulse {
@@ -71,4 +90,134 @@ body {
 
 .chat-pulse {
   animation: chat-pulse 2.5s ease-in-out infinite;
+}
+
+.top-banner-content {
+  padding-right: 3rem;
+  white-space: nowrap;
+}
+
+.top-banner-track {
+  width: max-content;
+  animation: top-banner-marquee 30s linear infinite;
+}
+
+@keyframes top-banner-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.footer-tripadvisor img {
+  opacity: 0.5;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.2s, filter 0.2s;
+}
+
+.footer-tripadvisor:hover img {
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(68%) sepia(55%) saturate(500%)
+    hue-rotate(5deg);
+}
+
+.footer-contact-link {
+  transition: color 0.2s;
+}
+
+.footer-contact-link:hover {
+  color: #c4963a;
+}
+
+/* Global image depth effects */
+img {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.img-alive {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.img-alive:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22), 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Button depth */
+.btn-alive {
+  box-shadow: 0 4px 16px rgba(196, 150, 58, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-alive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(196, 150, 58, 0.5);
+}
+
+/* Card depth */
+.card-alive {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-alive:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+}
+
+.feature-row-hover {
+  border-left: 3px solid transparent;
+  transition: border-left 0.3s ease;
+}
+
+.feature-row-hover:hover {
+  border-left: 3px solid #c4963a;
+}
+
+a[href="/book"],
+button[type="submit"] {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@keyframes key-info-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.key-info-content {
+  animation: key-info-fade-in 0.25s ease-out;
+}
+
+.key-info-row {
+  border-left: 3px solid transparent;
+  transition: background-color 0.2s ease, border-left-color 0.2s ease;
+}
+
+.key-info-row:hover {
+  border-left-color: #c4963a;
+  background-color: rgba(196, 150, 58, 0.04);
+}
+
+.key-info-tabs-scroll {
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  justify-content: flex-start;
+}
+
+@media (min-width: 768px) {
+  .key-info-tabs-scroll {
+    justify-content: center;
+  }
+}
+
+.key-info-tabs-scroll::-webkit-scrollbar {
+  display: none;
 }

@@ -72,12 +72,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex h-screen min-h-[600px] items-center justify-center overflow-hidden">
+    <section className="relative flex h-screen min-h-[500px] items-center justify-center overflow-hidden md:min-h-[600px]">
       <video
         autoPlay
         muted
         loop
         playsInline
+        preload="auto"
         className="absolute inset-0 h-full w-full object-cover"
       >
         <source src="/hero.mp4" type="video/mp4" />
@@ -109,7 +110,7 @@ export default function Hero() {
           className="mb-6 text-white"
           style={{
             fontFamily: "var(--font-cormorant)",
-            fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+            fontSize: "clamp(36px, 8vw, 90px)",
             fontWeight: 300,
             lineHeight: 1.15,
           }}
@@ -132,7 +133,7 @@ export default function Hero() {
         <a
           id="book"
           href="#book"
-          className="inline-block border border-[#C4963A] bg-[#C4963A] px-10 py-3.5 text-white transition-all duration-300 hover:bg-transparent"
+          className="btn-alive inline-block min-h-[44px] border border-[#C4963A] bg-[#C4963A] px-10 py-3.5 text-white transition-all duration-300 hover:bg-transparent"
           style={{
             fontFamily: "var(--font-inter)",
             fontSize: "11px",
@@ -145,11 +146,11 @@ export default function Hero() {
         </a>
       </div>
 
-      <div className="absolute bottom-10 right-6 z-10 text-right text-white md:right-10">
+      <div className="absolute bottom-8 left-1/2 z-10 w-full max-w-xs -translate-x-1/2 text-center text-white md:bottom-10 md:right-10 md:left-auto md:w-auto md:max-w-none md:translate-x-0 md:text-right">
         <p
           style={{
             fontFamily: "var(--font-inter)",
-            fontSize: "28px",
+            fontSize: "clamp(20px, 5vw, 28px)",
             fontWeight: 300,
             letterSpacing: "0.05em",
           }}
@@ -181,7 +182,7 @@ export default function Hero() {
         )}
       </div>
 
-      <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2">
+      <div className="absolute bottom-10 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex">
         <div
           className="scroll-indicator-line h-10 w-px bg-white/50"
           style={{ transformOrigin: "top" }}

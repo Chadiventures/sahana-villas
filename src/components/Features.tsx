@@ -229,22 +229,27 @@ function FeatureRow({
   return (
     <div ref={rowRef}>
       <div
-        className="flex flex-col items-center gap-6 sm:flex-row sm:items-center"
-        style={{ padding: "40px 0" }}
+        className="feature-row-hover flex flex-col items-center gap-6 py-8 text-center md:flex-row md:items-center md:py-10 md:text-left"
       >
-        {isOdd ? (
-          <>
-            {iconBlock}
-            {divider}
-            {textBlock}
-          </>
-        ) : (
-          <>
-            {textBlock}
-            {divider}
-            {iconBlock}
-          </>
-        )}
+        <div className="flex w-full flex-col items-center gap-6 md:hidden">
+          {iconBlock}
+          {textBlock}
+        </div>
+        <div className="hidden w-full md:flex md:items-center md:gap-6">
+          {isOdd ? (
+            <>
+              {iconBlock}
+              {divider}
+              {textBlock}
+            </>
+          ) : (
+            <>
+              {textBlock}
+              {divider}
+              {iconBlock}
+            </>
+          )}
+        </div>
       </div>
       {index < features.length - 1 && (
         <div
@@ -261,7 +266,7 @@ function FeatureRow({
 
 export default function Features() {
   return (
-    <section className="bg-[#F7F3EE] py-20 lg:py-28">
+    <section className="bg-[#F7F3EE] py-12 md:py-20 lg:py-28">
       <div className="mx-auto max-w-4xl px-6 lg:px-10">
         <div className="mb-12 text-center">
           <p

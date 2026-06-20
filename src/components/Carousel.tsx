@@ -1,286 +1,107 @@
-"use client";
+'use client'
 
-import { useRef, useState, useEffect, useCallback, MouseEvent } from "react";
+import { useRef, useEffect, useState } from 'react'
+import Image from 'next/image'
 
-interface CarouselCard {
-  id: string;
-  category: string;
-  title: string;
-  description: string;
-  gradient: string;
-}
-
-const CARD_WIDTH = 420 + 24;
-
-const cards: CarouselCard[] = [
-  {
-    id: "villas",
-    category: "Our Villas",
-    title: "Your Private Sanctuary",
-    description:
-      "Three-bedroom villas with private pools, open-air living, and refined tropical design in the heart of Seminyak.",
-    gradient: "linear-gradient(145deg, #1C2E20 0%, #3D5A45 50%, #1C2E20 100%)",
-  },
-  {
-    id: "families",
-    category: "Families",
-    title: "Space for Everyone",
-    description:
-      "Spacious villas designed for families to relax, reconnect, and create lasting memories together.",
-    gradient: "linear-gradient(145deg, #1C2E20 0%, #2D4A35 50%, #1C2E20 100%)",
-  },
-  {
-    id: "services",
-    category: "Services",
-    title: "Thoughtful Hospitality",
-    description:
-      "From daily housekeeping to private chefs, every detail is handled with warm Balinese care.",
-    gradient: "linear-gradient(145deg, #1C2E20 0%, #B07B72 60%, #8B5E56 100%)",
-  },
-  {
-    id: "dining",
-    category: "Dining",
-    title: "Culinary Delights",
-    description:
-      "In-villa dining experiences, private chefs, and Seminyak's finest restaurants just steps away.",
-    gradient: "linear-gradient(145deg, #2A3D2E 0%, #B07B72 40%, #1C2E20 100%)",
-  },
-  {
-    id: "media",
-    category: "Media",
-    title: "See the Experience",
-    description:
-      "Browse our gallery of sun-drenched pools, open-air living spaces, and tropical gardens.",
-    gradient: "linear-gradient(145deg, #2A3D2E 0%, #C4963A 50%, #1C2E20 100%)",
-  },
-  {
-    id: "promos",
-    category: "Promos",
-    title: "Seasonal Offers",
-    description:
-      "Discover exclusive packages for extended stays, honeymoons, and family getaways.",
-    gradient: "linear-gradient(145deg, #1C2E20 0%, #8FA99A 40%, #C4963A 100%)",
-  },
-  {
-    id: "experiences",
-    category: "Experiences",
-    title: "Curated Adventures",
-    description:
-      "Temple visits, surf lessons, spa treatments, and bespoke island excursions arranged for you.",
-    gradient: "linear-gradient(145deg, #1C2E20 0%, #4A6B52 50%, #C4963A 100%)",
-  },
-];
+const CARDS = [
+  { tag: 'OUR VILLAS', title: 'Your Private Sanctuary', desc: 'Three-bedroom private pool villas in the heart of Seminyak.', img: '/your-private-sanctuary.png' },
+  { tag: 'FAMILIES', title: 'Made for Families', desc: 'Single-storey layout, pool fencing, baby cots and a team that cares.', img: '/familiy-section.png' },
+  { tag: 'SERVICES', title: 'Thoughtful Hospitality', desc: 'From daily housekeeping to private chefs, every detail handled with care.', img: '/thoughtful-hospitality.png' },
+  { tag: 'DINING', title: 'Culinary Delights', desc: 'In-villa dining and Seminyak finest restaurants just steps away.', img: '/culinary-delights.png' },
+  { tag: 'MEDIA', title: 'See the Experience', desc: 'Browse our gallery of sun-drenched pools and tropical gardens.', img: '/see-the-experience.png' },
+  { tag: 'PROMOS', title: 'Seasonal Offers', desc: 'Book direct and unlock exclusive rates and seasonal packages.', img: '/seasonal-offers.png' },
+  { tag: 'EXPERIENCES', title: 'Curated Adventures', desc: 'Coffee plantations, water blessings, spa treatments and more.', img: '/curated-adventures.png' },
+]
 
 export default function Carousel() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeIndexRef = useRef(0);
-  const isDragging = useRef(false);
-  const isPaused = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
-
-  const scrollToIndex = useCallback((index: number) => {
-    const container = scrollRef.current;
-    if (!container) return;
-    const clampedIndex = Math.max(0, Math.min(index, cards.length - 1));
-    container.scrollTo({ left: clampedIndex * CARD_WIDTH, behavior: "smooth" });
-    activeIndexRef.current = clampedIndex;
-    setActiveIndex(clampedIndex);
-  }, []);
+  const trackRef = useRef<HTMLDivElement>(null)
+  const [isPaused, setIsPaused] = useState(false)
+  const positionRef = useRef(0)
+  const animFrameRef = useRef<number | undefined>(undefined)
+  const CARD_WIDTH = 420 + 16
+  const TOTAL_WIDTH = CARD_WIDTH * CARDS.length
 
   useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
+    const track = trackRef.current
+    if (!track) return
 
-    const handleScroll = () => {
-      const index = Math.round(container.scrollLeft / CARD_WIDTH);
-      const clampedIndex = Math.max(0, Math.min(index, cards.length - 1));
-      activeIndexRef.current = clampedIndex;
-      setActiveIndex(clampedIndex);
-    };
+    const speed = 0.5
 
-    container.addEventListener("scroll", handleScroll, { passive: true });
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (isPaused.current || isDragging.current) return;
-      const nextIndex = (activeIndexRef.current + 1) % cards.length;
-      scrollToIndex(nextIndex);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [scrollToIndex]);
-
-  const handleMouseDown = (e: MouseEvent) => {
-    const container = scrollRef.current;
-    if (!container) return;
-    isDragging.current = true;
-    startX.current = e.pageX - container.offsetLeft;
-    scrollLeft.current = container.scrollLeft;
-    container.style.cursor = "grabbing";
-  };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!isDragging.current || !scrollRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5;
-    scrollRef.current.scrollLeft = scrollLeft.current - walk;
-  };
-
-  const handleMouseUp = () => {
-    isDragging.current = false;
-    if (scrollRef.current) {
-      scrollRef.current.style.cursor = "grab";
+    const animate = () => {
+      if (!isPaused) {
+        positionRef.current += speed
+        if (positionRef.current >= TOTAL_WIDTH) {
+          positionRef.current = 0
+        }
+        if (track) {
+          track.style.transform = `translateX(-${positionRef.current}px)`
+        }
+      }
+      animFrameRef.current = requestAnimationFrame(animate)
     }
-  };
 
-  const handleMouseEnter = () => {
-    isPaused.current = true;
-  };
+    animFrameRef.current = requestAnimationFrame(animate)
+    return () => {
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current)
+    }
+  }, [isPaused, TOTAL_WIDTH])
 
-  const handleMouseLeave = () => {
-    isPaused.current = false;
-    handleMouseUp();
-  };
+  const scroll = (direction: 'left' | 'right') => {
+    positionRef.current += direction === 'right' ? CARD_WIDTH : -CARD_WIDTH
+    if (positionRef.current < 0) positionRef.current = 0
+  }
+
+  const doubled = [...CARDS, ...CARDS]
 
   return (
-    <section id="villas" className="bg-[#1C2E20] py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="mb-14 text-center">
-          <p
-            className="mb-3 text-[#C4963A]"
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontSize: "11px",
-              fontWeight: 500,
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-            }}
-          >
-            Discover
-          </p>
-          <h2
-            className="text-white"
-            style={{
-              fontFamily: "var(--font-cormorant)",
-              fontSize: "clamp(2rem, 4vw, 3rem)",
-              fontWeight: 300,
-              lineHeight: 1.2,
-            }}
-          >
-            Explore Sahana Villas
-          </h2>
-        </div>
+    <section className="overflow-hidden px-6 py-12 md:py-20" style={{ background: '#1C2E20' }}>
+      <div className="mb-10 text-center md:mb-12">
+        <p style={{ fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#C4963A', marginBottom: '12px' }}>Explore Sahana</p>
+        <h2 style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(36px, 4vw, 52px)', fontWeight: 300, color: 'white', letterSpacing: '0.02em' }}>Everything You Need</h2>
       </div>
 
-      <div
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <div className="relative">
+        <button
+          onClick={() => scroll('left')}
+          className="absolute left-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[#C4963A] bg-transparent text-[#C4963A] md:left-6 md:h-11 md:w-11"
+          style={{ fontSize: '18px', cursor: 'pointer' }}
+          aria-label="Previous slide"
+        >←</button>
+
         <div
-          ref={scrollRef}
-          className="carousel-scroll flex cursor-grab gap-6 overflow-x-auto px-6 pb-4 select-none lg:px-10"
-          style={{ scrollSnapType: "x mandatory" }}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
+          className="overflow-hidden px-12 md:px-20"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
-          {cards.map((card) => (
-            <article
-              key={card.id}
-              className="relative shrink-0 overflow-hidden"
-              style={{
-                width: "420px",
-                height: "540px",
-                scrollSnapAlign: "start",
-              }}
-            >
+          <div
+            ref={trackRef}
+            style={{ display: 'flex', gap: '16px', willChange: 'transform' }}
+          >
+            {doubled.map((card, i) => (
               <div
-                className="absolute inset-0"
-                style={{ background: card.gradient }}
-              />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%)",
-                }}
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-8">
-                <span
-                  className="mb-4 inline-block w-fit border border-[#C4963A] px-3 py-1 text-[#C4963A]"
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontSize: "10px",
-                    fontWeight: 500,
-                    letterSpacing: "0.2em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {card.category}
-                </span>
-                <h3
-                  className="mb-3 text-white"
-                  style={{
-                    fontFamily: "var(--font-cormorant)",
-                    fontSize: "2rem",
-                    fontWeight: 400,
-                    lineHeight: 1.2,
-                  }}
-                >
-                  {card.title}
-                </h3>
-                <p
-                  className="mb-6 text-white/70"
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontSize: "14px",
-                    fontWeight: 300,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {card.description}
-                </p>
-                <a
-                  href={`#${card.id}`}
-                  className="inline-flex items-center gap-2 text-[#C4963A] transition-colors duration-300 hover:text-white"
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontSize: "11px",
-                    fontWeight: 500,
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Explore
-                  <span aria-hidden="true">→</span>
-                </a>
+                key={i}
+                className="relative h-[480px] flex-[0_0_85vw] overflow-hidden rounded-[2px] md:h-[540px] md:flex-[0_0_420px]"
+                style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.3)' }}
+              >
+                <Image src={card.img} alt={card.title} fill style={{ objectFit: 'cover' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '32px' }}>
+                  <p style={{ fontSize: '9px', letterSpacing: '0.25em', color: '#C4963A', marginBottom: '8px', border: '1px solid #C4963A', display: 'inline-block', padding: '3px 8px', width: 'fit-content' }}>{card.tag}</p>
+                  <h3 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '28px', fontWeight: 300, color: 'white', marginBottom: '8px' }}>{card.title}</h3>
+                  <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, marginBottom: '16px', fontWeight: 300 }}>{card.desc}</p>
+                  <a href="#" style={{ fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C4963A', textDecoration: 'none' }}>Explore →</a>
+                </div>
               </div>
-            </article>
-          ))}
+            ))}
+          </div>
         </div>
 
-        <div className="mt-10 flex justify-center gap-3">
-          {cards.map((card, index) => (
-            <button
-              key={card.id}
-              type="button"
-              aria-label={`Go to slide ${index + 1}`}
-              onClick={() => scrollToIndex(index)}
-              className="h-2 rounded-full transition-all duration-300"
-              style={{
-                width: activeIndex === index ? "24px" : "8px",
-                backgroundColor:
-                  activeIndex === index ? "#C4963A" : "rgba(255,255,255,0.3)",
-              }}
-            />
-          ))}
-        </div>
+        <button
+          onClick={() => scroll('right')}
+          className="absolute right-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[#C4963A] bg-transparent text-[#C4963A] md:right-6 md:h-11 md:w-11"
+          style={{ fontSize: '18px', cursor: 'pointer' }}
+          aria-label="Next slide"
+        >→</button>
       </div>
     </section>
-  );
+  )
 }

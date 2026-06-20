@@ -1,8 +1,12 @@
+"use client";
+
+import type { CSSProperties } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const navigateLinks = [
   { label: "Our Villas", href: "#villas" },
-  { label: "About Us", href: "#about" },
+  { label: "About Us", href: "/about" },
   { label: "Families", href: "#families" },
   { label: "Contact", href: "#contact" },
   { label: "Book Now", href: "#book" },
@@ -42,25 +46,62 @@ const bottomLegalLinks = [
   },
 ];
 
+const socialLinks = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/sahanavillas/",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5" />
+        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+        <path d="M17.5 6.5h.01" />
+      </svg>
+    ),
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/sahanavillas/",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+      </svg>
+    ),
+  },
+  {
+    label: "WhatsApp",
+    href: "https://wa.me/628113882070",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg>
+    ),
+  },
+];
+
 const linkStyle = {
   fontFamily: "var(--font-inter)",
   fontSize: "13px",
   fontWeight: 300,
 };
 
+const contactLinkStyle: CSSProperties = {
+  color: "rgba(255,255,255,0.45)",
+  textDecoration: "none",
+};
+
 export default function Footer() {
   return (
     <footer className="bg-[#111812]">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+      <div className="mx-auto max-w-7xl px-6 py-12 md:px-10 md:py-16 lg:py-20">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-          <div>
+          <div className="text-center sm:text-left">
             <img
               src="/logo.png"
               alt="Sahana Villas"
-              className="mb-4 h-10 w-auto brightness-0 invert"
+              className="mx-auto mb-4 h-10 w-auto brightness-0 invert sm:mx-0"
             />
             <p
-              className="text-white/50"
+              className="mb-5 text-white/50"
               style={{
                 ...linkStyle,
                 lineHeight: 1.7,
@@ -68,9 +109,37 @@ export default function Footer() {
             >
               Luxury private villas in the heart of Seminyak, Bali.
             </p>
+            <div className="flex justify-center gap-4 sm:justify-start">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="text-[rgba(255,255,255,0.5)] transition-colors duration-300 hover:text-[#C4963A]"
+                >
+                  {social.icon}
+                </a>
+              ))}
+              <a
+                href="https://www.tripadvisor.com/Hotel_Review-g297697-d12496069-Reviews-Sahana_Villas-Kuta_Kuta_District_Bali.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TripAdvisor"
+                className="footer-tripadvisor"
+              >
+                <Image
+                  src="/tripadvisor.svg"
+                  alt="TripAdvisor"
+                  width={20}
+                  height={20}
+                />
+              </a>
+            </div>
           </div>
 
-          <div>
+          <div className="text-center sm:text-left">
             <h4
               className="mb-5 text-white/70"
               style={{
@@ -98,7 +167,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="text-center sm:text-left">
             <h4
               className="mb-5 text-white/70"
               style={{
@@ -128,7 +197,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="text-center sm:text-left">
             <h4
               className="mb-5 text-white/70"
               style={{
@@ -146,15 +215,33 @@ export default function Footer() {
               style={{ ...linkStyle, lineHeight: 1.7 }}
             >
               <p>
-                Jl. Kayu Aya (Oberoi Street) No. 35B,
-                <br />
-                Seminyak, Bali, Indonesia
+                <a
+                  href="https://maps.google.com/?q=Sahana+Villas+Jl+Kayu+Aya+Seminyak+Bali"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "rgba(255,255,255,0.45)",
+                    textDecoration: "none",
+                    transition: "color 0.2s",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "#C4963A";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "rgba(255,255,255,0.45)";
+                  }}
+                >
+                  Jl. Kayu Aya (Oberoi Street) No. 35B
+                  <br />
+                  Seminyak, Bali, Indonesia
+                </a>
               </p>
               <p>
                 Front Office:{" "}
                 <a
-                  href="tel:+62361736674"
-                  className="transition-colors duration-300 hover:text-[#C4963A]"
+                  href="tel:+6236173667"
+                  style={contactLinkStyle}
+                  className="footer-contact-link"
                 >
                   +62 361 73 66 74
                 </a>
@@ -163,7 +250,8 @@ export default function Footer() {
                 Reservations:{" "}
                 <a
                   href="tel:+628113882070"
-                  className="transition-colors duration-300 hover:text-[#C4963A]"
+                  style={contactLinkStyle}
+                  className="footer-contact-link"
                 >
                   +62 811 388 2070
                 </a>
@@ -172,7 +260,8 @@ export default function Footer() {
                 Email:{" "}
                 <a
                   href="mailto:booking@sahanavillas.com"
-                  className="transition-colors duration-300 hover:text-[#C4963A]"
+                  style={contactLinkStyle}
+                  className="footer-contact-link"
                 >
                   booking@sahanavillas.com
                 </a>
@@ -185,7 +274,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 sm:flex-row lg:px-10">
           <p
-            className="text-white/40"
+            className="text-center text-white/40 sm:text-left"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "12px",
@@ -195,7 +284,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Sahana Villas. All rights
             reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
             {bottomLegalLinks.map((link) => (
               <a
                 key={link.label}
@@ -205,7 +294,7 @@ export default function Footer() {
                 className="text-white/40 transition-colors duration-300 hover:text-[#C4963A]"
                 style={{
                   fontFamily: "var(--font-inter)",
-                  fontSize: "12px",
+                  fontSize: "11px",
                   fontWeight: 300,
                 }}
               >
