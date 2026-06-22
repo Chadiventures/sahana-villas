@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState, useRef, type CSSProperties } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 const navLinks = [
-  { label: "Our Villas", href: "/#villas" },
+  { label: "Our Villas", href: "/villas" },
   { label: "About Us", href: "/about" },
   { label: "Families", href: "/families" },
 ];
@@ -36,7 +36,7 @@ function FlagIcon({ flagFile, label }: { flagFile: string; label: string }) {
   );
 }
 
-function ChevronDown({ scrolled }: { scrolled: boolean }) {
+function ChevronDown() {
   return (
     <svg
       width="10"
@@ -47,7 +47,7 @@ function ChevronDown({ scrolled }: { scrolled: boolean }) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={scrolled ? "text-[#1A1A1A]/50" : "text-white/50"}
+      className="text-white/50"
       aria-hidden="true"
     >
       <path d="M6 9l6 6 6-6" />
@@ -55,29 +55,28 @@ function ChevronDown({ scrolled }: { scrolled: boolean }) {
   );
 }
 
-const contactIconClass = (scrolled: boolean) =>
-  scrolled
-    ? "text-[#1A1A1A] opacity-75 transition-all duration-300 hover:text-[#67bc6a] hover:opacity-100"
-    : "text-white opacity-75 transition-all duration-300 hover:text-[#67bc6a] hover:opacity-100";
+const contactIconClass =
+  "text-white opacity-75 transition-all duration-300 hover:text-[#67bc6a] hover:opacity-100";
 
-const navLinkClass = (scrolled: boolean) =>
-  `transition-colors duration-300 hover:text-[#67bc6a] ${scrolled ? "text-[#1A1A1A]" : "text-white"}`;
+const navLinkClass =
+  "text-white transition-colors duration-300 hover:text-[#67bc6a]";
 
-const navLinkStyle = (scrolled: boolean): CSSProperties => ({
+const navLinkStyle = {
   fontFamily: "var(--font-inter)",
   fontSize: "11px",
   fontWeight: 400,
   letterSpacing: "0.2em",
-  textTransform: "uppercase",
-  textShadow: scrolled ? "none" : "0 1px 3px rgba(0,0,0,0.5)",
-});
+  textTransform: "uppercase" as const,
+  color: "white",
+  textShadow: "0 1px 3px rgba(0,0,0,0.5)",
+};
 
-const navButtonStyle = (scrolled: boolean): CSSProperties => ({
-  ...navLinkStyle(scrolled),
+const navButtonStyle = {
+  ...navLinkStyle,
   background: "transparent",
   border: "none",
   cursor: "pointer",
-});
+};
 
 function PhoneIcon() {
   return (
@@ -113,7 +112,6 @@ function HamburgerIcon() {
 }
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileLangOpen, setMobileLangOpen] = useState(false);
@@ -122,16 +120,6 @@ export default function Header() {
   const [currentLang, setCurrentLang] = useState(languages[0]);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const langDropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -171,16 +159,34 @@ export default function Header() {
   return (
     <>
     <header
-      className="sticky top-0 left-0 right-0 z-[100] h-20 transition-all duration-500"
       style={{
-        backgroundColor: scrolled
-          ? "rgba(193, 186, 178, 0.96)"
-          : "rgba(0, 0, 0, 0.15)",
-        backdropFilter: scrolled ? "blur(8px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(8px)" : "none",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        height: "80px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "0 48px",
+        background: "transparent",
       }}
     >
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-10">
+      <div className="relative flex h-full w-full items-center justify-between">
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: "140px",
+            background:
+              "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 100%)",
+            pointerEvents: "none",
+            zIndex: -1,
+          }}
+        />
         <Link href="/" className="flex shrink-0 items-center">
           <Image
             src="/logo.png"
@@ -192,10 +198,7 @@ export default function Header() {
             style={{
               height: "48px",
               width: "auto",
-              filter: scrolled
-                ? "drop-shadow(0 1px 3px rgba(0,0,0,0.4))"
-                : "drop-shadow(0 1px 3px rgba(0,0,0,0.3))",
-              transition: "filter 0.3s ease",
+              filter: "brightness(0) invert(1)",
             }}
           />
         </Link>
@@ -205,8 +208,8 @@ export default function Header() {
             <Link
               key={link.label}
               href={link.href}
-              className={navLinkClass(scrolled)}
-              style={navLinkStyle(scrolled)}
+              className={navLinkClass}
+              style={navLinkStyle}
             >
               {link.label}
             </Link>
@@ -216,8 +219,8 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setRatesOpen(!ratesOpen)}
-              className={navLinkClass(scrolled)}
-              style={navButtonStyle(scrolled)}
+              className={navLinkClass}
+              style={navButtonStyle}
               aria-expanded={ratesOpen}
               aria-haspopup="menu"
             >
@@ -272,8 +275,8 @@ export default function Header() {
 
           <Link
             href="/contact"
-            className={navLinkClass(scrolled)}
-            style={navLinkStyle(scrolled)}
+            className={navLinkClass}
+            style={navLinkStyle}
           >
             Contact
           </Link>
@@ -284,13 +287,13 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setLangOpen(!langOpen)}
-              className={`flex items-center gap-2 transition-colors duration-300 hover:text-[#67bc6a] ${scrolled ? "text-[#1A1A1A]" : "text-white"}`}
+              className="flex items-center gap-2 text-white transition-colors duration-300 hover:text-[#67bc6a]"
               style={{
                 fontFamily: "var(--font-inter)",
                 fontSize: "11px",
                 fontWeight: 400,
                 letterSpacing: "0.1em",
-                textShadow: scrolled ? "none" : "0 1px 3px rgba(0,0,0,0.5)",
+                textShadow: "0 1px 3px rgba(0,0,0,0.5)",
               }}
               aria-expanded={langOpen}
               aria-haspopup="listbox"
@@ -300,7 +303,7 @@ export default function Header() {
                 label={currentLang.label}
               />
               <span>{currentLang.code}</span>
-              <ChevronDown scrolled={scrolled} />
+              <ChevronDown />
             </button>
 
             {langOpen && (
@@ -338,13 +341,13 @@ export default function Header() {
           </div>
 
           <div className="hidden items-center gap-2 md:flex">
-            <a href="tel:+6236173667" aria-label="Call us" className={contactIconClass(scrolled)}>
+            <a href="tel:+6236173667" aria-label="Call us" className={contactIconClass}>
               <PhoneIcon />
             </a>
             <a
               href="mailto:booking@sahanavillas.com"
               aria-label="Email us"
-              className={contactIconClass(scrolled)}
+              className={contactIconClass}
             >
               <MailIcon />
             </a>
@@ -353,7 +356,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className={contactIconClass(scrolled)}
+              className={contactIconClass}
             >
               <WhatsAppIcon />
             </a>
@@ -376,8 +379,8 @@ export default function Header() {
 
         <button
           type="button"
-          className={`flex h-11 w-11 shrink-0 items-center justify-center md:hidden ${scrolled ? "text-[#1A1A1A]" : "text-white"}`}
-          style={scrolled ? undefined : { filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.5))" }}
+          className="flex h-11 w-11 shrink-0 items-center justify-center text-white md:hidden"
+          style={{ filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.5))" }}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -476,7 +479,7 @@ export default function Header() {
           >
             <FlagIcon flagFile={currentLang.flagFile} label={currentLang.label} />
             <span>{currentLang.code}</span>
-            <ChevronDown scrolled={true} />
+            <ChevronDown />
           </button>
           {mobileLangOpen && (
             <ul className="mt-2 border border-[#1A1A1A]/10 bg-[#f5f2ef] py-1">

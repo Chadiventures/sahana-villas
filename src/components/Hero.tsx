@@ -131,20 +131,44 @@ export default function Hero() {
           3-Bedroom Luxury Villas with Private Pool
         </p>
 
-        <a
-          id="book"
-          href="#book"
-          className="btn-alive inline-block min-h-[44px] border border-[#67bc6a] bg-[#67bc6a] px-10 py-3.5 text-white transition-all duration-300 hover:bg-[#5aaa5d]"
-          style={{
-            fontFamily: "var(--font-inter)",
-            fontSize: "11px",
-            fontWeight: 500,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-          }}
-        >
-          Check Availability
-        </a>
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <a
+            id="book"
+            href="#book"
+            className="btn-alive inline-block min-h-[44px] border border-[#67bc6a] bg-[#67bc6a] px-10 py-3.5 text-white transition-all duration-300 hover:bg-[#5aaa5d]"
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontSize: "11px",
+              fontWeight: 500,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+            }}
+          >
+            Check Availability
+          </a>
+          <a
+            href="https://maps.app.goo.gl/YVMeVAbNe2cC8hh38"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-block",
+              fontFamily: "var(--font-inter)",
+              fontSize: "11px",
+              fontWeight: 500,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "white",
+              background: "transparent",
+              border: "1px solid rgba(255,255,255,0.6)",
+              padding: "14px 40px",
+              borderRadius: "2px",
+              textDecoration: "none",
+              transition: "border-color 0.2s, color 0.2s",
+            }}
+          >
+            Virtual Tour
+          </a>
+        </div>
       </div>
 
       <div className="absolute bottom-8 left-1/2 z-10 w-full max-w-xs -translate-x-1/2 text-center text-white md:bottom-10 md:right-10 md:left-auto md:w-auto md:max-w-none md:translate-x-0 md:text-right">
