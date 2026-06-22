@@ -1,8 +1,20 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import ContactHeroVideo from "@/components/contact/ContactHeroVideo";
 import ContactSection from "@/components/contact/ContactSection";
 import Footer from "@/components/Footer";
+
+const ContactHeroVideo = dynamic(
+  () => import("@/components/contact/ContactHeroVideo"),
+  {
+    loading: () => (
+      <div
+        className="absolute inset-0 h-full w-full bg-[#1C2E20]"
+        aria-hidden="true"
+      />
+    ),
+  },
+);
 
 export const metadata: Metadata = {
   title: "Contact | Sahana Villas",

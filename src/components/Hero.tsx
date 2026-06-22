@@ -78,8 +78,9 @@ export default function Hero() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         className="absolute inset-0 h-full w-full object-cover"
+        style={{ willChange: "transform" }}
       >
         <source src="/hero.mp4" type="video/mp4" />
       </video>

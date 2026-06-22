@@ -95,9 +95,11 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-12 md:px-10 md:py-16 lg:py-20">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           <div className="text-center sm:text-left">
-            <img
+            <Image
               src="/logo.png"
               alt="Sahana Villas"
+              width={160}
+              height={40}
               className="mx-auto mb-4 h-10 w-auto brightness-0 invert sm:mx-0"
             />
             <p

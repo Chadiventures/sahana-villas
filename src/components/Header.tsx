@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 const navLinks = [
@@ -20,13 +21,13 @@ const languages = [
 
 function FlagIcon({ flagFile, label }: { flagFile: string; label: string }) {
   return (
-    <img
+    <Image
       src={`https://cdn.gtranslate.net/flags/svg/${flagFile}`}
       alt={label}
       width={20}
       height={20}
+      unoptimized
       className="shrink-0 rounded-[2px] object-cover"
-      style={{ width: 20, height: 20 }}
     />
   );
 }
@@ -137,7 +138,14 @@ export default function Header() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
         <Link href="/" className="shrink-0">
-          <img src="/logo.png" alt="Sahana Villas" className="h-8 w-auto md:h-10" />
+          <Image
+            src="/logo.png"
+            alt="Sahana Villas"
+            width={160}
+            height={40}
+            priority
+            className="h-8 w-auto md:h-10"
+          />
         </Link>
 
         <nav className="hidden items-center gap-10 md:flex">

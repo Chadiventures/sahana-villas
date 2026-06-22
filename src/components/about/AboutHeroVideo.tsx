@@ -22,9 +22,10 @@ export default function AboutHeroVideo() {
       muted
       loop
       playsInline
-      preload="auto"
+      preload="metadata"
       onError={handleError}
       className="absolute inset-0 h-full w-full object-cover"
+      style={{ willChange: "transform" }}
     />
   );
 }

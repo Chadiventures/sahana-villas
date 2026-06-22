@@ -16,7 +16,7 @@ export default function Story() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         onLoadedData={() => {
           console.log("Story video loaded successfully");
         }}
@@ -29,6 +29,7 @@ export default function Story() {
           width: "100%",
           height: "100%",
           objectFit: "cover",
+          willChange: "transform",
         }}
       />
 

@@ -1,9 +1,21 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import ImageCollage from "@/components/ImageCollage";
 import KeyInformation from "@/components/about/KeyInformation";
-import AboutHeroVideo from "@/components/about/AboutHeroVideo";
 import Footer from "@/components/Footer";
+
+const AboutHeroVideo = dynamic(
+  () => import("@/components/about/AboutHeroVideo"),
+  {
+    loading: () => (
+      <div
+        className="absolute inset-0 h-full w-full bg-[#1C2E20]"
+        aria-hidden="true"
+      />
+    ),
+  },
+);
 
 export const metadata: Metadata = {
   title: "About Us | Sahana Villas",

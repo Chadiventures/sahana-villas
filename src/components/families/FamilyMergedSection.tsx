@@ -1,7 +1,16 @@
 "use client";
 
-import ContactHeroVideo from "@/components/contact/ContactHeroVideo";
+import dynamic from "next/dynamic";
 import FamilyFeaturesAccordion from "@/components/families/FamilyFeaturesAccordion";
+
+const ContactHeroVideo = dynamic(
+  () => import("@/components/contact/ContactHeroVideo"),
+  {
+    loading: () => (
+      <div className="absolute inset-0 bg-[#1C2E20]" aria-hidden="true" />
+    ),
+  },
+);
 
 export default function FamilyMergedSection() {
   return (

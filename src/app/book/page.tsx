@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -116,9 +117,11 @@ export default function BookPage() {
         style={{ backgroundColor: "#1C2E20" }}
       >
         <Link href="/" className="mb-12">
-          <img
+          <Image
             src="/logo.png"
             alt="Sahana Villas"
+            width={144}
+            height={36}
             className="h-9 w-auto brightness-0 invert"
           />
         </Link>
@@ -153,9 +156,11 @@ export default function BookPage() {
         style={{ backgroundColor: "#1C2E20" }}
       >
         <Link href="/">
-          <img
+          <Image
             src="/logo.png"
             alt="Sahana Villas"
+            width={128}
+            height={32}
             className="h-8 w-auto brightness-0 invert"
           />
         </Link>

@@ -21,7 +21,7 @@ export default function ContactHeroVideo() {
       muted
       loop
       playsInline
-      preload="auto"
+      preload="metadata"
       onError={handleError}
       style={{
         position: "absolute",
@@ -29,6 +29,7 @@ export default function ContactHeroVideo() {
         width: "100%",
         height: "100%",
         objectFit: "cover",
+        willChange: "transform",
       }}
       src={PRIMARY_SRC}
     />
