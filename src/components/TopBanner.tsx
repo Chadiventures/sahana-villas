@@ -32,7 +32,13 @@ export default function TopBanner() {
   return (
     <div
       className="top-banner overflow-hidden bg-[#67bc6a] transition-colors duration-300 hover:bg-[#5aaa5d]"
-      style={{ position: "relative", height: "32px" }}
+      style={{
+        position: "relative",
+        height: "32px",
+        margin: 0,
+        padding: 0,
+        display: "block",
+      }}
     >
       <Link
         href="/promos"
