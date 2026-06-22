@@ -118,7 +118,10 @@ export default function VillasPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative -mt-[80px] flex h-screen min-h-[500px] flex-col items-center justify-end overflow-hidden pb-20 text-center">
+      <section
+        className="relative flex h-screen min-h-[500px] flex-col items-center justify-end overflow-hidden pb-20 text-center"
+        style={{ marginTop: "-80px" }}
+      >
         <video
           autoPlay
           muted

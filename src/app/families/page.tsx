@@ -16,8 +16,9 @@ export default function FamiliesPage() {
   return (
     <>
       <section
-        className="relative -mt-[80px] flex flex-col items-center justify-center overflow-hidden px-6 pb-0 text-center"
+        className="relative flex flex-col items-center justify-center overflow-hidden px-6 pb-0 text-center"
         style={{
+          marginTop: "-80px",
           height: "35vh",
           minHeight: "280px",
           background:

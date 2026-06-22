@@ -26,8 +26,9 @@ export default function ContactPage() {
   return (
     <>
       <section
-        className="relative -mt-[80px] flex flex-col items-center justify-center overflow-hidden px-6 text-center"
+        className="relative flex flex-col items-center justify-center overflow-hidden px-6 text-center"
         style={{
+          marginTop: "-80px",
           height: "40vh",
           minHeight: "280px",
         }}

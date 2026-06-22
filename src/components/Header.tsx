@@ -161,7 +161,7 @@ export default function Header() {
     <header
       style={{
         position: "fixed",
-        top: 0,
+        top: "32px",
         left: 0,
         right: 0,
         zIndex: 100,

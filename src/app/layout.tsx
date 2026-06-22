@@ -34,7 +34,9 @@ export default function RootLayout({
       <body className="antialiased">
         <TopBanner />
         <Header />
-        <main>{children}</main>
+        <main>
+          <div style={{ paddingTop: "80px" }}>{children}</div>
+        </main>
         <ChatBot />
       </body>
     </html>

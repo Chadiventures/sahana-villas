@@ -72,7 +72,10 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative -mt-[80px] flex h-screen min-h-[500px] items-center justify-center overflow-hidden md:min-h-[600px]">
+    <section
+      className="relative flex h-screen min-h-[500px] items-center justify-center overflow-hidden md:min-h-[600px]"
+      style={{ marginTop: "-80px" }}
+    >
       <video
         autoPlay
         muted

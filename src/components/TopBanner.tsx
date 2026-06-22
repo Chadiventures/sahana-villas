@@ -30,16 +30,25 @@ function BannerSegment({ hidden }: { hidden?: boolean }) {
 
 export default function TopBanner() {
   return (
-    <Link
-      href="/book"
-      className="top-banner block overflow-hidden bg-[#67bc6a] transition-colors duration-300 hover:bg-[#5aaa5d]"
+    <div
+      className="top-banner overflow-hidden bg-[#67bc6a] transition-colors duration-300 hover:bg-[#5aaa5d]"
       style={{ position: "relative", height: "32px" }}
-      aria-label="Book direct and save 15 percent"
     >
-      <div className="top-banner-track flex h-full items-center">
-        <BannerSegment />
-        <BannerSegment hidden />
-      </div>
-    </Link>
+      <Link
+        href="/promos"
+        style={{
+          display: "block",
+          width: "100%",
+          height: "100%",
+          textDecoration: "none",
+        }}
+        aria-label="View current promotions"
+      >
+        <div className="top-banner-track flex h-full items-center">
+          <BannerSegment />
+          <BannerSegment hidden />
+        </div>
+      </Link>
+    </div>
   );
 }
