@@ -10,10 +10,13 @@ export default function FamilyMergedSection() {
 
       <div
         className="absolute inset-0"
-        style={{ backgroundColor: "rgba(10, 20, 14, 0.80)" }}
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(10, 20, 14, 0.10) 0%, rgba(10, 20, 14, 0.60) 30%, rgba(10, 20, 14, 0.80) 100%)",
+        }}
       />
 
-      <div className="relative z-10 py-12 md:py-16 lg:py-[100px]">
+      <div className="relative z-10 pb-12 md:pb-16 lg:pb-[100px]">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-6 lg:grid-cols-2 lg:gap-16 lg:px-10">
           <blockquote
             className="text-white"

@@ -128,7 +128,7 @@ export default function Header() {
   return (
     <>
     <header
-      className="fixed top-10 left-0 right-0 z-50 transition-all duration-500"
+      className="fixed top-8 left-0 right-0 z-50 transition-all duration-500"
       style={{
         backgroundColor: scrolled ? "rgba(28, 46, 32, 0.92)" : "transparent",
         backdropFilter: scrolled ? "blur(12px)" : "none",

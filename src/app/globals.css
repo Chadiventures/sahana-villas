@@ -93,13 +93,20 @@ body {
 }
 
 .top-banner-content {
-  padding-right: 3rem;
+  padding-right: 10rem;
   white-space: nowrap;
+}
+
+.top-banner-separator {
+  margin-left: 5rem;
+  margin-right: 5rem;
+  font-size: 8px;
+  letter-spacing: 0;
 }
 
 .top-banner-track {
   width: max-content;
-  animation: top-banner-marquee 30s linear infinite;
+  animation: top-banner-marquee 28s linear infinite;
 }
 
 @keyframes top-banner-marquee {

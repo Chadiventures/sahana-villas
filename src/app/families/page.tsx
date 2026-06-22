@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import FamilyMergedSection from "@/components/families/FamilyMergedSection";
 import FamilyLocationHighlights from "@/components/families/FamilyLocationHighlights";
@@ -17,26 +16,14 @@ export default function FamiliesPage() {
   return (
     <main>
       <section
-        className="relative flex flex-col items-center justify-center overflow-hidden px-6 text-center"
+        className="relative flex flex-col items-center justify-center overflow-hidden px-6 pb-0 text-center"
         style={{
-          height: "55vh",
-          minHeight: "360px",
+          height: "35vh",
+          minHeight: "280px",
+          background:
+            "linear-gradient(135deg, #1C2E20 0%, #2C4A3E 50%, #1C2E20 100%)",
         }}
       >
-        <Image
-          src="/baby-sitter-image.png"
-          alt="Family at Sahana Villas"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-
-        <div
-          className="absolute inset-0"
-          style={{ backgroundColor: "rgba(247, 243, 238, 0.65)" }}
-        />
-
         <div className="relative z-10 max-w-3xl">
           <p
             className="mb-3 text-[#C4963A]"
@@ -52,10 +39,10 @@ export default function FamiliesPage() {
           </p>
 
           <h1
-            className="mb-4 text-[#1C2E20]"
+            className="mb-4 whitespace-normal text-white md:whitespace-nowrap"
             style={{
               fontFamily: "var(--font-cormorant)",
-              fontSize: "clamp(2rem, 6vw, 4rem)",
+              fontSize: "clamp(28px, 3.5vw, 52px)",
               fontWeight: 300,
               lineHeight: 1.15,
             }}
@@ -70,7 +57,7 @@ export default function FamiliesPage() {
               fontSize: "16px",
               fontWeight: 300,
               lineHeight: 1.7,
-              color: "rgba(28, 46, 32, 0.7)",
+              color: "rgba(255,255,255,0.75)",
             }}
           >
             Sahana Villas is proud to be one of Seminyak&apos;s most
@@ -83,14 +70,14 @@ export default function FamiliesPage() {
               fontFamily: "var(--font-inter)",
               fontSize: "12px",
               fontWeight: 300,
-              color: "rgba(28, 46, 32, 0.5)",
+              color: "rgba(255,255,255,0.5)",
             }}
           >
             <Link href="/" className="transition-colors hover:text-[#C4963A]">
               Home
             </Link>
             <span className="mx-2">/</span>
-            <span style={{ color: "rgba(28, 46, 32, 0.65)" }}>Families</span>
+            <span className="text-white/65">Families</span>
           </nav>
         </div>
       </section>
