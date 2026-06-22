@@ -192,8 +192,10 @@ export default function Header() {
             style={{
               height: "48px",
               width: "auto",
-              filter: "none",
-              transition: "none",
+              filter: scrolled
+                ? "drop-shadow(0 1px 3px rgba(0,0,0,0.4))"
+                : "drop-shadow(0 1px 3px rgba(0,0,0,0.3))",
+              transition: "filter 0.3s ease",
             }}
           />
         </Link>

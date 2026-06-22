@@ -69,7 +69,7 @@ export default function About() {
             }}
           >
             Where Bali&apos;s Heart{" "}
-            <em className="text-[#B07B72]">Meets</em> Modern Luxury
+            <em className="text-[#67bc6a]">Meets</em> Modern Luxury
           </h2>
 
           <p

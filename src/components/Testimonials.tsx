@@ -99,7 +99,7 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="overflow-hidden bg-[#c1bab2] py-12 md:py-24 lg:py-32">
+    <section className="overflow-hidden bg-white py-12 md:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="mb-10 text-center md:mb-16">
           <p
@@ -153,7 +153,7 @@ export default function Testimonials() {
                   pointerEvents: isActive ? "auto" : "none",
                 }}
               >
-                <div className="card-alive relative bg-white p-8 lg:p-12">
+                <div className="card-alive relative border border-[rgba(0,0,0,0.08)] bg-white p-8 lg:p-12">
                   <div
                     className="mb-6 text-[#67bc6a]"
                     aria-label="5 stars"

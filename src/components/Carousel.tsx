@@ -56,7 +56,7 @@ export default function Carousel() {
   return (
     <section id="villas" className="overflow-hidden px-6 py-12 md:py-20" style={{ background: '#c1bab2' }}>
       <div className="mb-10 text-center md:mb-12">
-        <p style={{ fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#67bc6a', marginBottom: '12px' }}>Explore Sahana</p>
+        <p style={{ fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#ffffff', marginBottom: '12px' }}>Explore Sahana</p>
         <h2 style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(36px, 4vw, 52px)', fontWeight: 300, color: '#1A1A1A', letterSpacing: '0.02em' }}>Everything You Need</h2>
       </div>
 
