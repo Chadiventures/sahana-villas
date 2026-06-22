@@ -99,11 +99,11 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="overflow-hidden bg-[#1C2E20] py-12 md:py-24 lg:py-32">
+    <section className="overflow-hidden bg-[#c1bab2] py-12 md:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="mb-10 text-center md:mb-16">
           <p
-            className="mb-3 text-[#C4963A]"
+            className="mb-3 text-[#67bc6a]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "11px",
@@ -115,7 +115,7 @@ export default function Testimonials() {
             Guest Reviews
           </p>
           <h2
-            className="text-white"
+            className="text-[#1A1A1A]"
             style={{
               fontFamily: "var(--font-cormorant)",
               fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -155,7 +155,7 @@ export default function Testimonials() {
               >
                 <div className="card-alive relative bg-white p-8 lg:p-12">
                   <div
-                    className="mb-6 text-[#C4963A]"
+                    className="mb-6 text-[#67bc6a]"
                     aria-label="5 stars"
                     style={{ fontSize: isActive ? "18px" : "14px" }}
                   >
@@ -163,7 +163,7 @@ export default function Testimonials() {
                   </div>
 
                   <blockquote
-                    className="mb-8 text-[#1C2E20]"
+                    className="mb-8 text-[#1A1A1A]"
                     style={{
                       fontFamily: "var(--font-cormorant)",
                       fontSize: isActive
@@ -177,7 +177,7 @@ export default function Testimonials() {
                     &ldquo;{testimonial.quote}&rdquo;
                   </blockquote>
 
-                  <div className="border-t border-[#1C2E20]/10 pt-6 pr-20">
+                  <div className="border-t border-[#1A1A1A]/10 pt-6 pr-20">
                     <p
                       className="text-[#1A1A1A]"
                       style={{
@@ -220,7 +220,7 @@ export default function Testimonials() {
               style={{
                 width: activeIndex === index ? "24px" : "8px",
                 backgroundColor:
-                  activeIndex === index ? "#C4963A" : "rgba(255,255,255,0.3)",
+                  activeIndex === index ? "#67bc6a" : "rgba(26, 26, 26, 0.25)",
               }}
             />
           ))}
@@ -231,7 +231,7 @@ export default function Testimonials() {
             href="https://www.tripadvisor.com/VacationRentalReview-g469404-d2551837"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 text-[#C4963A] transition-colors duration-300 hover:text-white"
+            className="group inline-flex items-center gap-2 text-[#67bc6a] transition-colors duration-300 hover:text-[#5aaa5d]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "13px",

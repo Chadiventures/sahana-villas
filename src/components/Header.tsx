@@ -1,14 +1,18 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 const navLinks = [
-  { label: "Our Villas", href: "#villas" },
+  { label: "Our Villas", href: "/#villas" },
   { label: "About Us", href: "/about" },
   { label: "Families", href: "/families" },
-  { label: "Contact", href: "/contact" },
+];
+
+const ratesDropdownItems = [
+  { label: "Published Rates", href: "/rates" },
+  { label: "Promotions", href: "/promos" },
 ];
 
 const languages = [
@@ -32,7 +36,7 @@ function FlagIcon({ flagFile, label }: { flagFile: string; label: string }) {
   );
 }
 
-function ChevronDown() {
+function ChevronDown({ scrolled }: { scrolled: boolean }) {
   return (
     <svg
       width="10"
@@ -43,7 +47,7 @@ function ChevronDown() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="text-white/50"
+      className={scrolled ? "text-[#1A1A1A]/50" : "text-white/50"}
       aria-hidden="true"
     >
       <path d="M6 9l6 6 6-6" />
@@ -51,8 +55,29 @@ function ChevronDown() {
   );
 }
 
-const contactIconClass =
-  "text-[#F7F3EE] opacity-75 transition-all duration-300 hover:text-[#C4963A] hover:opacity-100";
+const contactIconClass = (scrolled: boolean) =>
+  scrolled
+    ? "text-[#1A1A1A] opacity-75 transition-all duration-300 hover:text-[#67bc6a] hover:opacity-100"
+    : "text-white opacity-75 transition-all duration-300 hover:text-[#67bc6a] hover:opacity-100";
+
+const navLinkClass = (scrolled: boolean) =>
+  `transition-colors duration-300 hover:text-[#67bc6a] ${scrolled ? "text-[#1A1A1A]" : "text-white"}`;
+
+const navLinkStyle = (scrolled: boolean): CSSProperties => ({
+  fontFamily: "var(--font-inter)",
+  fontSize: "11px",
+  fontWeight: 400,
+  letterSpacing: "0.2em",
+  textTransform: "uppercase",
+  textShadow: scrolled ? "none" : "0 1px 3px rgba(0,0,0,0.5)",
+});
+
+const navButtonStyle = (scrolled: boolean): CSSProperties => ({
+  ...navLinkStyle(scrolled),
+  background: "transparent",
+  border: "none",
+  cursor: "pointer",
+});
 
 function PhoneIcon() {
   return (
@@ -92,12 +117,15 @@ export default function Header() {
   const [langOpen, setLangOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileLangOpen, setMobileLangOpen] = useState(false);
+  const [ratesOpen, setRatesOpen] = useState(false);
+  const [mobileRatesOpen, setMobileRatesOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState(languages[0]);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const langDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 80);
     };
 
     handleScroll();
@@ -110,6 +138,20 @@ export default function Header() {
       if (
         dropdownRef.current &&
         !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setRatesOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        langDropdownRef.current &&
+        !langDropdownRef.current.contains(e.target as Node)
       ) {
         setLangOpen(false);
       }
@@ -129,22 +171,30 @@ export default function Header() {
   return (
     <>
     <header
-      className="fixed top-8 left-0 right-0 z-50 transition-all duration-500"
+      className="sticky top-0 left-0 right-0 z-[100] h-20 transition-all duration-500"
       style={{
-        backgroundColor: scrolled ? "rgba(28, 46, 32, 0.92)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+        backgroundColor: scrolled
+          ? "rgba(193, 186, 178, 0.96)"
+          : "rgba(0, 0, 0, 0.15)",
+        backdropFilter: scrolled ? "blur(8px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(8px)" : "none",
       }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
-        <Link href="/" className="shrink-0">
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-10">
+        <Link href="/" className="flex shrink-0 items-center">
           <Image
             src="/logo.png"
             alt="Sahana Villas"
             width={160}
-            height={40}
+            height={48}
             priority
-            className="h-8 w-auto md:h-10"
+            className="shrink-0"
+            style={{
+              height: "48px",
+              width: "auto",
+              filter: "none",
+              transition: "none",
+            }}
           />
         </Link>
 
@@ -153,31 +203,92 @@ export default function Header() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-white transition-colors duration-300 hover:text-[#C4963A]"
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontSize: "11px",
-                fontWeight: 400,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-              }}
+              className={navLinkClass(scrolled)}
+              style={navLinkStyle(scrolled)}
             >
               {link.label}
             </Link>
           ))}
+
+          <div ref={dropdownRef} style={{ position: "relative" }}>
+            <button
+              type="button"
+              onClick={() => setRatesOpen(!ratesOpen)}
+              className={navLinkClass(scrolled)}
+              style={navButtonStyle(scrolled)}
+              aria-expanded={ratesOpen}
+              aria-haspopup="menu"
+            >
+              Rates &amp; Promos ▾
+            </button>
+
+            {ratesOpen && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 0,
+                  marginTop: "8px",
+                  background: "#1C2E20",
+                  minWidth: "180px",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
+                  zIndex: 200,
+                  padding: "8px 0",
+                }}
+              >
+                <Link
+                  href="/rates"
+                  onClick={() => setRatesOpen(false)}
+                  style={{
+                    display: "block",
+                    padding: "12px 24px",
+                    color: "rgba(255,255,255,0.85)",
+                    fontSize: "12px",
+                    letterSpacing: "0.08em",
+                    textDecoration: "none",
+                  }}
+                >
+                  Published Rates
+                </Link>
+                <Link
+                  href="/promos"
+                  onClick={() => setRatesOpen(false)}
+                  style={{
+                    display: "block",
+                    padding: "12px 24px",
+                    color: "rgba(255,255,255,0.85)",
+                    fontSize: "12px",
+                    letterSpacing: "0.08em",
+                    textDecoration: "none",
+                  }}
+                >
+                  Promotions
+                </Link>
+              </div>
+            )}
+          </div>
+
+          <Link
+            href="/contact"
+            className={navLinkClass(scrolled)}
+            style={navLinkStyle(scrolled)}
+          >
+            Contact
+          </Link>
         </nav>
 
         <div className="hidden shrink-0 items-center gap-4 md:flex">
-          <div ref={dropdownRef} className="relative">
+          <div ref={langDropdownRef} className="relative">
             <button
               type="button"
               onClick={() => setLangOpen(!langOpen)}
-              className="flex items-center gap-2 text-white transition-colors duration-300 hover:text-[#C4963A]"
+              className={`flex items-center gap-2 transition-colors duration-300 hover:text-[#67bc6a] ${scrolled ? "text-[#1A1A1A]" : "text-white"}`}
               style={{
                 fontFamily: "var(--font-inter)",
                 fontSize: "11px",
                 fontWeight: 400,
                 letterSpacing: "0.1em",
+                textShadow: scrolled ? "none" : "0 1px 3px rgba(0,0,0,0.5)",
               }}
               aria-expanded={langOpen}
               aria-haspopup="listbox"
@@ -187,14 +298,13 @@ export default function Header() {
                 label={currentLang.label}
               />
               <span>{currentLang.code}</span>
-              <ChevronDown />
+              <ChevronDown scrolled={scrolled} />
             </button>
 
             {langOpen && (
               <ul
                 role="listbox"
-                className="absolute right-0 top-full mt-2 min-w-[120px] border border-white/10 py-1 shadow-lg"
-                style={{ backgroundColor: "#1C2E20" }}
+                className="absolute right-0 top-full mt-2 min-w-[120px] border border-[#1A1A1A]/10 bg-[#f5f2ef] py-1 shadow-lg"
               >
                 {languages.map((lang) => (
                   <li key={lang.code} role="option">
@@ -204,7 +314,7 @@ export default function Header() {
                         setCurrentLang(lang);
                         setLangOpen(false);
                       }}
-                      className="flex w-full items-center gap-2 px-4 py-2 text-left text-white transition-colors duration-200 hover:text-[#C4963A]"
+                      className="flex w-full items-center gap-2 px-4 py-2 text-left text-[#1A1A1A] transition-colors duration-200 hover:text-[#67bc6a]"
                       style={{
                         fontFamily: "var(--font-inter)",
                         fontSize: "11px",
@@ -212,7 +322,7 @@ export default function Header() {
                         letterSpacing: "0.05em",
                         backgroundColor:
                           currentLang.code === lang.code
-                            ? "rgba(196, 150, 58, 0.1)"
+                            ? "rgba(103, 188, 106, 0.1)"
                             : "transparent",
                       }}
                     >
@@ -226,13 +336,13 @@ export default function Header() {
           </div>
 
           <div className="hidden items-center gap-2 md:flex">
-            <a href="tel:+6236173667" aria-label="Call us" className={contactIconClass}>
+            <a href="tel:+6236173667" aria-label="Call us" className={contactIconClass(scrolled)}>
               <PhoneIcon />
             </a>
             <a
               href="mailto:booking@sahanavillas.com"
               aria-label="Email us"
-              className={contactIconClass}
+              className={contactIconClass(scrolled)}
             >
               <MailIcon />
             </a>
@@ -241,7 +351,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className={contactIconClass}
+              className={contactIconClass(scrolled)}
             >
               <WhatsAppIcon />
             </a>
@@ -249,7 +359,7 @@ export default function Header() {
 
           <Link
             href="#book"
-            className="hidden border border-[#C4963A] bg-[#C4963A] px-6 py-2.5 text-white transition-all duration-300 hover:bg-transparent hover:text-[#C4963A] md:inline-block"
+            className="hidden border border-[#67bc6a] bg-[#67bc6a] px-6 py-2.5 text-white transition-all duration-300 hover:bg-[#5aaa5d] md:inline-block"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "11px",
@@ -264,7 +374,8 @@ export default function Header() {
 
         <button
           type="button"
-          className="flex min-h-[44px] min-w-[44px] items-center justify-center text-white md:hidden"
+          className={`flex h-11 w-11 shrink-0 items-center justify-center md:hidden ${scrolled ? "text-[#1A1A1A]" : "text-white"}`}
+          style={scrolled ? undefined : { filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.5))" }}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -276,7 +387,7 @@ export default function Header() {
 
     {mobileOpen && (
       <div
-        className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-[#1C2E20] px-6 pt-24"
+        className="fixed inset-0 z-[110] flex flex-col items-center justify-center bg-[#c1bab2] px-6 pt-24"
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
@@ -287,7 +398,7 @@ export default function Header() {
               key={link.label}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="min-h-[44px] py-3 text-center text-white transition-colors duration-300 hover:text-[#C4963A]"
+              className="min-h-[44px] py-3 text-center text-[#1A1A1A] transition-colors duration-300 hover:text-[#67bc6a]"
               style={{
                 fontFamily: "var(--font-cormorant)",
                 fontSize: "clamp(1.75rem, 6vw, 2.25rem)",
@@ -298,13 +409,62 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+
+          <button
+            type="button"
+            onClick={() => setMobileRatesOpen(!mobileRatesOpen)}
+            className="min-h-[44px] py-3 text-center text-[#1A1A1A] transition-colors duration-300 hover:text-[#67bc6a]"
+            style={{
+              fontFamily: "var(--font-cormorant)",
+              fontSize: "clamp(1.75rem, 6vw, 2.25rem)",
+              fontWeight: 300,
+              lineHeight: 1.3,
+            }}
+            aria-expanded={mobileRatesOpen}
+          >
+            Rates &amp; Promos
+          </button>
+          {mobileRatesOpen && (
+            <div className="flex w-full flex-col items-center gap-1 pb-2">
+              {ratesDropdownItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="min-h-[44px] py-2 text-[#6B6B6B] transition-colors hover:text-[#67bc6a]"
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontSize: "13px",
+                    fontWeight: 400,
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          )}
+
+          <Link
+            href="/contact"
+            onClick={() => setMobileOpen(false)}
+            className="min-h-[44px] py-3 text-center text-[#1A1A1A] transition-colors duration-300 hover:text-[#67bc6a]"
+            style={{
+              fontFamily: "var(--font-cormorant)",
+              fontSize: "clamp(1.75rem, 6vw, 2.25rem)",
+              fontWeight: 300,
+              lineHeight: 1.3,
+            }}
+          >
+            Contact
+          </Link>
         </nav>
 
         <div className="mt-10 w-full max-w-sm">
           <button
             type="button"
             onClick={() => setMobileLangOpen(!mobileLangOpen)}
-            className="mx-auto flex min-h-[44px] items-center justify-center gap-2 text-white"
+            className="mx-auto flex min-h-[44px] items-center justify-center gap-2 text-[#1A1A1A]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "11px",
@@ -314,10 +474,10 @@ export default function Header() {
           >
             <FlagIcon flagFile={currentLang.flagFile} label={currentLang.label} />
             <span>{currentLang.code}</span>
-            <ChevronDown />
+            <ChevronDown scrolled={true} />
           </button>
           {mobileLangOpen && (
-            <ul className="mt-2 border border-white/10 py-1">
+            <ul className="mt-2 border border-[#1A1A1A]/10 bg-[#f5f2ef] py-1">
               {languages.map((lang) => (
                 <li key={lang.code}>
                   <button
@@ -326,7 +486,7 @@ export default function Header() {
                       setCurrentLang(lang);
                       setMobileLangOpen(false);
                     }}
-                    className="flex min-h-[44px] w-full items-center justify-center gap-2 px-4 py-2 text-white hover:text-[#C4963A]"
+                    className="flex min-h-[44px] w-full items-center justify-center gap-2 px-4 py-2 text-[#1A1A1A] hover:text-[#67bc6a]"
                     style={{
                       fontFamily: "var(--font-inter)",
                       fontSize: "11px",
@@ -344,7 +504,7 @@ export default function Header() {
         <Link
           href="#book"
           onClick={() => setMobileOpen(false)}
-          className="btn-alive mt-10 min-h-[44px] border border-[#C4963A] bg-[#C4963A] px-10 py-3.5 text-white"
+          className="btn-alive mt-10 min-h-[44px] border border-[#67bc6a] bg-[#67bc6a] px-10 py-3.5 text-white transition-colors duration-300 hover:bg-[#5aaa5d]"
           style={{
             fontFamily: "var(--font-inter)",
             fontSize: "11px",

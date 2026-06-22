@@ -45,7 +45,7 @@ export default function Story() {
         className="relative z-10 mx-auto max-w-4xl px-6 py-[60px] text-center md:px-12 md:py-[100px]"
       >
         <span
-          className="block text-[#C4963A] select-none"
+          className="block text-[#67bc6a] select-none"
           style={{
             fontFamily: "var(--font-cormorant)",
             fontSize: "120px",
@@ -71,7 +71,7 @@ export default function Story() {
         </blockquote>
 
         <span
-          className="block text-[#C4963A] select-none"
+          className="block text-[#67bc6a] select-none"
           style={{
             fontFamily: "var(--font-cormorant)",
             fontSize: "120px",

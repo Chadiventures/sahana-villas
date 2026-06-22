@@ -13,12 +13,12 @@ const textStyle = {
 function BannerSegment({ hidden }: { hidden?: boolean }) {
   return (
     <span
-      className="top-banner-content inline-flex shrink-0 items-center text-[#C4963A]"
+      className="top-banner-content inline-flex shrink-0 items-center text-white"
       aria-hidden={hidden}
     >
       <span style={textStyle}>{bannerOffer}</span>
       <span
-        className="top-banner-separator text-[#C4963A]/60"
+        className="top-banner-separator text-white/70"
         style={textStyle}
         aria-hidden="true"
       >
@@ -32,8 +32,8 @@ export default function TopBanner() {
   return (
     <Link
       href="/book"
-      className="top-banner block overflow-hidden bg-[#1C2E20] transition-colors duration-300 hover:bg-[#243828]"
-      style={{ height: "32px" }}
+      className="top-banner block overflow-hidden bg-[#67bc6a] transition-colors duration-300 hover:bg-[#5aaa5d]"
+      style={{ position: "relative", height: "32px" }}
       aria-label="Book direct and save 15 percent"
     >
       <div className="top-banner-track flex h-full items-center">

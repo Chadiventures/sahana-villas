@@ -72,7 +72,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex h-screen min-h-[500px] items-center justify-center overflow-hidden md:min-h-[600px]">
+    <section className="relative -mt-[80px] flex h-screen min-h-[500px] items-center justify-center overflow-hidden md:min-h-[600px]">
       <video
         autoPlay
         muted
@@ -95,7 +95,7 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
         <p
-          className="mb-4 text-[#C4963A]"
+          className="mb-4 text-[#67bc6a]"
           style={{
             fontFamily: "var(--font-inter)",
             fontSize: "11px",
@@ -134,7 +134,7 @@ export default function Hero() {
         <a
           id="book"
           href="#book"
-          className="btn-alive inline-block min-h-[44px] border border-[#C4963A] bg-[#C4963A] px-10 py-3.5 text-white transition-all duration-300 hover:bg-transparent"
+          className="btn-alive inline-block min-h-[44px] border border-[#67bc6a] bg-[#67bc6a] px-10 py-3.5 text-white transition-all duration-300 hover:bg-[#5aaa5d]"
           style={{
             fontFamily: "var(--font-inter)",
             fontSize: "11px",

@@ -50,10 +50,10 @@ export default function FamilyLocationHighlights() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#1C2E20] py-12 md:py-16 lg:py-20">
+    <section ref={sectionRef} className="bg-[#c1bab2] py-12 md:py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <h2
-          className="mb-12 text-center text-white"
+          className="mb-12 text-center text-[#1A1A1A]"
           style={{
             fontFamily: "var(--font-cormorant)",
             fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -75,7 +75,7 @@ export default function FamilyLocationHighlights() {
                 {item.emoji}
               </span>
               <p
-                className="text-white/75"
+                className="text-[#6B6B6B]"
                 style={{
                   fontFamily: "var(--font-inter)",
                   fontSize: "14px",

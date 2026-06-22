@@ -2,19 +2,22 @@
 
 :root {
   --cream: #f7f3ee;
-  --jungle-green: #1c2e20;
-  --gold: #c4963a;
+  --beige: #c1bab2;
+  --beige-light: #f5f2ef;
+  --brand-green: #67bc6a;
+  --brand-green-hover: #5aaa5d;
   --terracotta: #b07b72;
   --sage: #8fa99a;
   --text: #1a1a1a;
   --muted: #6b6b6b;
-  --footer-bg: #111812;
+  --footer-bg: #1a1a1a;
 }
 
 @theme inline {
   --color-cream: var(--cream);
-  --color-jungle-green: var(--jungle-green);
-  --color-gold: var(--gold);
+  --color-beige: var(--beige);
+  --color-beige-light: var(--beige-light);
+  --color-brand-green: var(--brand-green);
   --color-terracotta: var(--terracotta);
   --color-sage: var(--sage);
   --color-text: var(--text);
@@ -81,10 +84,10 @@ body {
 @keyframes chat-pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(196, 150, 58, 0.4);
+    box-shadow: 0 0 0 0 rgba(103, 188, 106, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 12px rgba(196, 150, 58, 0);
+    box-shadow: 0 0 0 12px rgba(103, 188, 106, 0);
   }
 }
 
@@ -126,8 +129,8 @@ body {
 
 .footer-tripadvisor:hover img {
   opacity: 1;
-  filter: brightness(0) saturate(100%) invert(68%) sepia(55%) saturate(500%)
-    hue-rotate(5deg);
+  filter: brightness(0) saturate(100%) invert(68%) sepia(30%) saturate(600%)
+    hue-rotate(85deg);
 }
 
 .footer-contact-link {
@@ -135,7 +138,7 @@ body {
 }
 
 .footer-contact-link:hover {
-  color: #c4963a;
+  color: #67bc6a;
 }
 
 /* Global image depth effects */
@@ -155,13 +158,13 @@ img {
 
 /* Button depth */
 .btn-alive {
-  box-shadow: 0 4px 16px rgba(196, 150, 58, 0.35);
+  box-shadow: 0 4px 16px rgba(103, 188, 106, 0.35);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-alive:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(196, 150, 58, 0.5);
+  box-shadow: 0 8px 28px rgba(103, 188, 106, 0.5);
 }
 
 /* Card depth */
@@ -181,7 +184,7 @@ img {
 }
 
 .feature-row-hover:hover {
-  border-left: 3px solid #c4963a;
+  border-left: 3px solid #67bc6a;
 }
 
 a[href="/book"],
@@ -208,8 +211,8 @@ button[type="submit"] {
 }
 
 .key-info-row:hover {
-  border-left-color: #c4963a;
-  background-color: rgba(196, 150, 58, 0.04);
+  border-left-color: #67bc6a;
+  background-color: rgba(103, 188, 106, 0.08);
 }
 
 .key-info-tabs-scroll {

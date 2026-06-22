@@ -47,7 +47,7 @@ export default function About() {
 
         <div ref={textRef} style={slideStyle(false)}>
           <p
-            className="mb-4 text-[#C4963A]"
+            className="mb-4 text-[#67bc6a]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "11px",
@@ -104,7 +104,7 @@ export default function About() {
 
           <a
             href="/about"
-            className="btn-alive group inline-flex items-center gap-2 border-b border-[#1A1A1A] pb-1 text-[#1A1A1A] transition-colors duration-300 hover:border-[#C4963A] hover:text-[#C4963A]"
+            className="btn-alive group inline-flex items-center gap-2 border-b border-[#1A1A1A] pb-1 text-[#1A1A1A] transition-colors duration-300 hover:border-[#67bc6a] hover:text-[#67bc6a]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "13px",

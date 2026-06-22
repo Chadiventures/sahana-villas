@@ -207,7 +207,7 @@ function FeatureRow({
       >
         <div className="md:w-[40%] md:shrink-0">
           <p
-            className="mb-2 text-[#C4963A]"
+            className="mb-2 text-[#67bc6a]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "10px",
@@ -218,7 +218,7 @@ function FeatureRow({
             {number}
           </p>
           <h4
-            className="text-[#1C2E20]"
+            className="text-[#1A1A1A]"
             style={{
               fontFamily: "var(--font-cormorant)",
               fontSize: "clamp(1.375rem, 4vw, 28px)",
@@ -245,7 +245,7 @@ function FeatureRow({
         <div
           style={{
             height: "1px",
-            backgroundColor: "rgba(28, 46, 32, 0.08)",
+            backgroundColor: "rgba(26, 26, 26, 0.08)",
           }}
           aria-hidden="true"
         />
@@ -259,10 +259,10 @@ export default function KeyInformation() {
   const activeContent = tabs.find((tab) => tab.id === activeTab) ?? tabs[0];
 
   return (
-    <section className="bg-[#1C2E20]">
+    <section className="bg-[#c1bab2]">
       <div className="px-6 pb-0 pt-12 text-center md:pt-16 lg:px-10 lg:pt-20">
         <p
-          className="mb-3 text-[#C4963A]"
+          className="mb-3 text-[#67bc6a]"
           style={{
             fontFamily: "var(--font-inter)",
             fontSize: "11px",
@@ -274,7 +274,7 @@ export default function KeyInformation() {
           Key Information
         </p>
         <h2
-          className="text-white"
+          className="text-[#1A1A1A]"
           style={{
             fontFamily: "var(--font-cormorant)",
             fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -300,13 +300,13 @@ export default function KeyInformation() {
                   textTransform: "uppercase",
                   color:
                     activeTab === tab.id
-                      ? "#FFFFFF"
-                      : "rgba(255, 255, 255, 0.5)",
+                      ? "#1A1A1A"
+                      : "rgba(26, 26, 26, 0.5)",
                   background: "transparent",
                   border: "none",
                   borderBottom:
                     activeTab === tab.id
-                      ? "2px solid #C4963A"
+                      ? "2px solid #67bc6a"
                       : "2px solid transparent",
                 }}
               >
@@ -315,7 +315,7 @@ export default function KeyInformation() {
               {index < tabs.length - 1 && (
                 <div
                   className="hidden h-4 w-px sm:block"
-                  style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                  style={{ backgroundColor: "rgba(26, 26, 26, 0.1)" }}
                   aria-hidden="true"
                 />
               )}
@@ -336,7 +336,7 @@ export default function KeyInformation() {
               fontSize: "clamp(6rem, 18vw, 12rem)",
               fontWeight: 300,
               lineHeight: 0.85,
-              color: "#1C2E20",
+              color: "#1A1A1A",
               opacity: 0.03,
               transform: "translate(8%, 20%)",
             }}

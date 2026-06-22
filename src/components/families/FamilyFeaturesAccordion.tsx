@@ -14,7 +14,7 @@ const iconProps = {
   height: 32,
   viewBox: "0 0 24 24",
   fill: "none",
-  stroke: "#C4963A",
+  stroke: "#67bc6a",
   strokeWidth: 1.5,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
@@ -161,7 +161,7 @@ function BulletList({ items, expanded }: { items: string[]; expanded?: boolean }
       {items.map((item) => (
         <li key={item} className="flex items-start gap-2.5">
           <span
-            className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#C4963A]"
+            className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#67bc6a]"
             aria-hidden="true"
           />
           <span
@@ -186,7 +186,7 @@ function KidsMenuCard() {
     <div
       style={{
         backgroundColor: "#F7F3EE",
-        border: "2px dashed #C4963A",
+        border: "2px dashed #67bc6a",
         borderRadius: "12px",
         padding: "24px",
       }}
@@ -198,7 +198,7 @@ function KidsMenuCard() {
         />
         <span
           className="h-3 w-3 rounded-full"
-          style={{ backgroundColor: "#C4963A" }}
+          style={{ backgroundColor: "#67bc6a" }}
         />
         <span
           className="h-3 w-3 rounded-full"
@@ -207,7 +207,7 @@ function KidsMenuCard() {
       </div>
 
       <h4
-        className="mb-5 text-center text-[#1C2E20]"
+        className="mb-5 text-center text-[#1A1A1A]"
         style={{
           fontFamily: "var(--font-cormorant)",
           fontSize: "22px",
@@ -230,7 +230,7 @@ function KidsMenuCard() {
                 fontSize: "13px",
                 fontWeight: 300,
                 lineHeight: 1.8,
-                color: "#1C2E20",
+                color: "#1A1A1A",
               }}
             >
               {item.text}
@@ -288,7 +288,7 @@ function FeatureCard({
       }}
       onMouseEnter={(e) => {
         if (!isExpanded) {
-          e.currentTarget.style.borderColor = "#C4963A";
+          e.currentTarget.style.borderColor = "#67bc6a";
         }
       }}
       onMouseLeave={(e) => {
@@ -321,7 +321,7 @@ function FeatureCard({
             fontSize: "20px",
             fontWeight: 300,
             lineHeight: 1,
-            color: isExpanded ? "#FFFFFF" : "#C4963A",
+            color: isExpanded ? "#FFFFFF" : "#67bc6a",
             transform: isExpanded ? "rotate(45deg)" : "rotate(0deg)",
           }}
           aria-hidden="true"
@@ -358,7 +358,7 @@ export default function FamilyFeaturesAccordion({
     <div className="mx-auto max-w-7xl px-6 lg:px-10">
       <div className="mb-14 text-center">
         <p
-          className="mb-3 text-[#C4963A]"
+          className="mb-3 text-[#67bc6a]"
           style={{
             fontFamily: "var(--font-inter)",
             fontSize: "11px",
@@ -405,7 +405,7 @@ export default function FamilyFeaturesAccordion({
   }
 
   return (
-    <section className="bg-[#1C2E20]" style={{ padding: "100px 0" }}>
+    <section className="bg-[#c1bab2]" style={{ padding: "100px 0" }}>
       {content}
     </section>
   );

@@ -5,11 +5,16 @@ import Link from "next/link";
 import Image from "next/image";
 
 const navigateLinks = [
-  { label: "Our Villas", href: "#villas" },
+  { label: "Our Villas", href: "/#villas" },
   { label: "About Us", href: "/about" },
-  { label: "Families", href: "#families" },
-  { label: "Contact", href: "#contact" },
-  { label: "Book Now", href: "#book" },
+  { label: "Families", href: "/families" },
+  { label: "Contact", href: "/contact" },
+  { label: "Book Now", href: "/#book" },
+];
+
+const ratesLinks = [
+  { label: "Published Rates", href: "/rates" },
+  { label: "Promotions", href: "/promos" },
 ];
 
 const legalLinks = [
@@ -91,9 +96,9 @@ const contactLinkStyle: CSSProperties = {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#111812]">
+    <footer className="bg-[#1A1A1A]">
       <div className="mx-auto max-w-7xl px-6 py-12 md:px-10 md:py-16 lg:py-20">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
           <div className="text-center sm:text-left">
             <Image
               src="/logo.png"
@@ -119,7 +124,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="text-[rgba(255,255,255,0.5)] transition-colors duration-300 hover:text-[#C4963A]"
+                  className="text-[rgba(255,255,255,0.5)] transition-colors duration-300 hover:text-[#67bc6a]"
                 >
                   {social.icon}
                 </a>
@@ -159,7 +164,35 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-white/50 transition-colors duration-300 hover:text-[#C4963A]"
+                    className="text-white/50 transition-colors duration-300 hover:text-[#67bc6a]"
+                    style={linkStyle}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="text-center sm:text-left">
+            <h4
+              className="mb-5 text-white/70"
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontSize: "11px",
+                fontWeight: 500,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+              }}
+            >
+              Rates
+            </h4>
+            <ul className="space-y-3">
+              {ratesLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-white/50 transition-colors duration-300 hover:text-[#67bc6a]"
                     style={linkStyle}
                   >
                     {link.label}
@@ -189,7 +222,7 @@ export default function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/50 transition-colors duration-300 hover:text-[#C4963A]"
+                    className="text-white/50 transition-colors duration-300 hover:text-[#67bc6a]"
                     style={linkStyle}
                   >
                     {link.label}
@@ -227,7 +260,7 @@ export default function Footer() {
                     transition: "color 0.2s",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "#C4963A";
+                    e.currentTarget.style.color = "#67bc6a";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.color = "rgba(255,255,255,0.45)";
@@ -293,7 +326,7 @@ export default function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/40 transition-colors duration-300 hover:text-[#C4963A]"
+                className="text-white/40 transition-colors duration-300 hover:text-[#67bc6a]"
                 style={{
                   fontFamily: "var(--font-inter)",
                   fontSize: "11px",

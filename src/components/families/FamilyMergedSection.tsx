@@ -7,7 +7,7 @@ const ContactHeroVideo = dynamic(
   () => import("@/components/contact/ContactHeroVideo"),
   {
     loading: () => (
-      <div className="absolute inset-0 bg-[#1C2E20]" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[#c1bab2]" aria-hidden="true" />
     ),
   },
 );

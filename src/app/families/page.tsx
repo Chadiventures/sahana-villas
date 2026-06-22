@@ -14,19 +14,19 @@ export const metadata: Metadata = {
 
 export default function FamiliesPage() {
   return (
-    <main>
+    <>
       <section
-        className="relative flex flex-col items-center justify-center overflow-hidden px-6 pb-0 text-center"
+        className="relative -mt-[80px] flex flex-col items-center justify-center overflow-hidden px-6 pb-0 text-center"
         style={{
           height: "35vh",
           minHeight: "280px",
           background:
-            "linear-gradient(135deg, #1C2E20 0%, #2C4A3E 50%, #1C2E20 100%)",
+            "linear-gradient(135deg, #c1bab2 0%, #f5f2ef 50%, #c1bab2 100%)",
         }}
       >
         <div className="relative z-10 max-w-3xl">
           <p
-            className="mb-3 text-[#C4963A]"
+            className="mb-3 text-[#67bc6a]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "11px",
@@ -39,7 +39,7 @@ export default function FamiliesPage() {
           </p>
 
           <h1
-            className="mb-4 whitespace-normal text-white md:whitespace-nowrap"
+            className="mb-4 whitespace-normal text-[#1A1A1A] md:whitespace-nowrap"
             style={{
               fontFamily: "var(--font-cormorant)",
               fontSize: "clamp(28px, 3.5vw, 52px)",
@@ -57,7 +57,7 @@ export default function FamiliesPage() {
               fontSize: "16px",
               fontWeight: 300,
               lineHeight: 1.7,
-              color: "rgba(255,255,255,0.75)",
+              color: "rgba(26, 26, 26, 0.75)",
             }}
           >
             Sahana Villas is proud to be one of Seminyak&apos;s most
@@ -70,14 +70,14 @@ export default function FamiliesPage() {
               fontFamily: "var(--font-inter)",
               fontSize: "12px",
               fontWeight: 300,
-              color: "rgba(255,255,255,0.5)",
+              color: "rgba(26, 26, 26, 0.5)",
             }}
           >
-            <Link href="/" className="transition-colors hover:text-[#C4963A]">
+            <Link href="/" className="transition-colors hover:text-[#67bc6a]">
               Home
             </Link>
             <span className="mx-2">/</span>
-            <span className="text-white/65">Families</span>
+            <span className="text-[#1A1A1A]/65">Families</span>
           </nav>
         </div>
       </section>
@@ -105,7 +105,7 @@ export default function FamiliesPage() {
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/book"
-              className="btn-alive inline-block border border-[#C4963A] bg-[#C4963A] px-10 py-3.5 text-white transition-all duration-300 hover:bg-transparent hover:text-[#C4963A]"
+              className="btn-alive inline-block border border-[#67bc6a] bg-[#67bc6a] px-10 py-3.5 text-white transition-all duration-300 hover:bg-[#5aaa5d]"
               style={{
                 fontFamily: "var(--font-inter)",
                 fontSize: "11px",
@@ -118,7 +118,7 @@ export default function FamiliesPage() {
             </Link>
             <Link
               href="/contact"
-              className="btn-alive inline-block border border-[#1C2E20] px-10 py-3.5 text-[#1C2E20] transition-all duration-300 hover:border-[#C4963A] hover:text-[#C4963A]"
+              className="btn-alive inline-block border border-[#1A1A1A] px-10 py-3.5 text-[#1A1A1A] transition-all duration-300 hover:border-[#67bc6a] hover:text-[#67bc6a]"
               style={{
                 fontFamily: "var(--font-inter)",
                 fontSize: "11px",
@@ -146,6 +146,6 @@ export default function FamiliesPage() {
       </section>
 
       <Footer />
-    </main>
+    </>
   );
 }

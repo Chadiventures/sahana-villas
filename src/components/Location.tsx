@@ -22,7 +22,7 @@ export default function Location() {
 
         <div>
           <p
-            className="mb-4 text-[#C4963A]"
+            className="mb-4 text-[#67bc6a]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "11px",
@@ -88,7 +88,7 @@ export default function Location() {
                 }}
               >
                 <span
-                  className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#C4963A]"
+                  className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#67bc6a]"
                   aria-hidden="true"
                 />
                 {highlight}

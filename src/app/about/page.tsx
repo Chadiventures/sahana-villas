@@ -10,7 +10,7 @@ const AboutHeroVideo = dynamic(
   {
     loading: () => (
       <div
-        className="absolute inset-0 h-full w-full bg-[#1C2E20]"
+        className="absolute inset-0 h-full w-full bg-[#c1bab2]"
         aria-hidden="true"
       />
     ),
@@ -42,9 +42,9 @@ const whyChooseUs = [
 
 export default function AboutPage() {
   return (
-    <main>
+    <>
       <section
-        className="relative flex flex-col items-center justify-center overflow-hidden px-6 text-center"
+        className="relative -mt-[80px] flex flex-col items-center justify-center overflow-hidden px-6 text-center"
         style={{
           height: "45vh",
           minHeight: "320px",
@@ -59,7 +59,7 @@ export default function AboutPage() {
 
         <div className="relative z-10">
           <p
-            className="mb-3 text-[#C4963A]"
+            className="mb-3 text-[#67bc6a]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "11px",
@@ -93,7 +93,7 @@ export default function AboutPage() {
               color: "rgba(255,255,255,0.6)",
             }}
           >
-            <Link href="/" className="transition-colors hover:text-[#C4963A]">
+            <Link href="/" className="transition-colors hover:text-[#67bc6a]">
               Home
             </Link>
             <span className="mx-2">/</span>
@@ -106,7 +106,7 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-6 lg:grid-cols-2 lg:gap-12 lg:px-10">
           <div className="order-2 lg:order-1">
             <p
-              className="mb-3 text-[#C4963A]"
+              className="mb-3 text-[#67bc6a]"
               style={{
                 fontFamily: "var(--font-inter)",
                 fontSize: "11px",
@@ -168,10 +168,10 @@ export default function AboutPage() {
 
       <KeyInformation />
 
-      <section className="bg-[#1C2E20] py-12 lg:py-16">
+      <section className="bg-[#c1bab2] py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <h2
-            className="mb-10 text-center text-white"
+            className="mb-10 text-center text-[#1A1A1A]"
             style={{
               fontFamily: "var(--font-cormorant)",
               fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -185,9 +185,9 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6">
             {whyChooseUs.map((item) => (
               <div key={item.title}>
-                <div className="mb-4 h-px w-10 bg-[#C4963A]" />
+                <div className="mb-4 h-px w-10 bg-[#67bc6a]" />
                 <h3
-                  className="mb-3 text-white"
+                  className="mb-3 text-[#1A1A1A]"
                   style={{
                     fontFamily: "var(--font-cormorant)",
                     fontSize: "1.5rem",
@@ -198,7 +198,7 @@ export default function AboutPage() {
                   {item.title}
                 </h3>
                 <p
-                  className="text-white/65"
+                  className="text-[#6B6B6B]"
                   style={{
                     fontFamily: "var(--font-inter)",
                     fontSize: "14px",
@@ -230,7 +230,7 @@ export default function AboutPage() {
 
           <Link
             href="/book"
-            className="btn-alive inline-block border border-[#C4963A] bg-[#C4963A] px-10 py-3.5 text-white transition-all duration-300 hover:bg-transparent hover:text-[#C4963A]"
+            className="btn-alive inline-block border border-[#67bc6a] bg-[#67bc6a] px-10 py-3.5 text-white transition-all duration-300 hover:bg-[#5aaa5d]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "11px",
@@ -253,7 +253,7 @@ export default function AboutPage() {
             Or contact us directly at{" "}
             <a
               href="mailto:booking@sahanavillas.com"
-              className="text-[#1A1A1A] transition-colors hover:text-[#C4963A]"
+              className="text-[#1A1A1A] transition-colors hover:text-[#67bc6a]"
             >
               booking@sahanavillas.com
             </a>
@@ -262,6 +262,6 @@ export default function AboutPage() {
       </section>
 
       <Footer />
-    </main>
+    </>
   );
 }

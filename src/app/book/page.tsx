@@ -84,7 +84,7 @@ const bookingRequests: BookingRequest[] = [
 
 function StatusBadge({ status }: { status: BookingStatus }) {
   const styles: Record<BookingStatus, { bg: string; color: string }> = {
-    Pending: { bg: "rgba(196, 150, 58, 0.15)", color: "#C4963A" },
+    Pending: { bg: "rgba(103, 188, 106, 0.15)", color: "#67bc6a" },
     Confirmed: { bg: "rgba(143, 169, 154, 0.2)", color: "#5A8A6A" },
     Declined: { bg: "rgba(176, 123, 114, 0.15)", color: "#B07B72" },
   };
@@ -111,10 +111,10 @@ function StatusBadge({ status }: { status: BookingStatus }) {
 
 export default function BookPage() {
   return (
-    <div className="flex min-h-screen flex-col md:flex-row">
+    <div className="-mt-[80px] flex min-h-screen flex-col md:flex-row">
       <aside
         className="hidden w-64 shrink-0 flex-col px-6 py-8 md:flex"
-        style={{ backgroundColor: "#1C2E20" }}
+        style={{ backgroundColor: "#c1bab2" }}
       >
         <Link href="/" className="mb-12">
           <Image
@@ -122,7 +122,7 @@ export default function BookPage() {
             alt="Sahana Villas"
             width={144}
             height={36}
-            className="h-9 w-auto brightness-0 invert"
+            className="h-9 w-auto"
           />
         </Link>
 
@@ -136,12 +136,12 @@ export default function BookPage() {
                 fontFamily: "var(--font-inter)",
                 fontSize: "13px",
                 fontWeight: link.active ? 500 : 300,
-                color: link.active ? "#C4963A" : "rgba(255,255,255,0.6)",
+                color: link.active ? "#67bc6a" : "rgba(26, 26, 26, 0.6)",
                 backgroundColor: link.active
-                  ? "rgba(196, 150, 58, 0.1)"
+                  ? "rgba(103, 188, 106, 0.1)"
                   : "transparent",
                 borderLeft: link.active
-                  ? "2px solid #C4963A"
+                  ? "2px solid #67bc6a"
                   : "2px solid transparent",
               }}
             >
@@ -153,7 +153,7 @@ export default function BookPage() {
 
       <div
         className="flex items-center justify-between px-6 py-4 md:hidden"
-        style={{ backgroundColor: "#1C2E20" }}
+        style={{ backgroundColor: "#c1bab2" }}
       >
         <Link href="/">
           <Image
@@ -161,11 +161,11 @@ export default function BookPage() {
             alt="Sahana Villas"
             width={128}
             height={32}
-            className="h-8 w-auto brightness-0 invert"
+            className="h-8 w-auto"
           />
         </Link>
         <span
-          className="text-[#C4963A]"
+          className="text-[#67bc6a]"
           style={{
             fontFamily: "var(--font-inter)",
             fontSize: "11px",
@@ -195,7 +195,7 @@ export default function BookPage() {
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="border border-[#1C2E20]/10 bg-white px-6 py-5"
+              className="border border-[#1A1A1A]/10 bg-white px-6 py-5"
             >
               <p
                 className="mb-1 text-[#6B6B6B]"
@@ -210,7 +210,7 @@ export default function BookPage() {
                 {stat.label}
               </p>
               <p
-                className="text-[#1C2E20]"
+                className="text-[#1A1A1A]"
                 style={{
                   fontFamily: "var(--font-cormorant)",
                   fontSize: "2rem",
@@ -224,10 +224,10 @@ export default function BookPage() {
           ))}
         </div>
 
-        <div className="overflow-x-auto border border-[#1C2E20]/10 bg-white">
+        <div className="overflow-x-auto border border-[#1A1A1A]/10 bg-white">
           <table className="w-full min-w-[800px]">
             <thead>
-              <tr className="border-b border-[#1C2E20]/10">
+              <tr className="border-b border-[#1A1A1A]/10">
                 {[
                   "Guest",
                   "Arrival",
@@ -256,7 +256,7 @@ export default function BookPage() {
               {bookingRequests.map((request) => (
                 <tr
                   key={request.id}
-                  className="border-b border-[#1C2E20]/5 last:border-b-0"
+                  className="border-b border-[#1A1A1A]/5 last:border-b-0"
                 >
                   <td className="px-6 py-5">
                     <div className="flex items-center gap-3">

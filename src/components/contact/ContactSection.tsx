@@ -8,7 +8,7 @@ const iconProps = {
   height: 24,
   viewBox: "0 0 24 24",
   fill: "none",
-  stroke: "#1C2E20",
+  stroke: "#1A1A1A",
   strokeWidth: 1.5,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
@@ -64,7 +64,7 @@ function CheckIcon() {
       height="32"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#C4963A"
+      stroke="#67bc6a"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -88,7 +88,7 @@ const contactItems: {
         href="https://maps.google.com/?q=Sahana+Villas+Jl+Kayu+Aya+Seminyak+Bali"
         target="_blank"
         rel="noopener noreferrer"
-        className="transition-colors duration-300 hover:text-[#C4963A]"
+        className="transition-colors duration-300 hover:text-[#67bc6a]"
       >
         Jl. Kayu Aya (Oberoi Street) No. 35B, Seminyak, Bali, Indonesia
       </a>
@@ -100,7 +100,7 @@ const contactItems: {
     value: (
       <a
         href="tel:+62361736674"
-        className="transition-colors duration-300 hover:text-[#C4963A]"
+        className="transition-colors duration-300 hover:text-[#67bc6a]"
       >
         Front Office: +62 361 73 66 74
       </a>
@@ -112,7 +112,7 @@ const contactItems: {
     value: (
       <a
         href="tel:+628113882070"
-        className="transition-colors duration-300 hover:text-[#C4963A]"
+        className="transition-colors duration-300 hover:text-[#67bc6a]"
       >
         Reservations: +62 811 388 2070
       </a>
@@ -126,7 +126,7 @@ const contactItems: {
         href="https://wa.me/628113882070"
         target="_blank"
         rel="noopener noreferrer"
-        className="transition-colors duration-300 hover:text-[#C4963A]"
+        className="transition-colors duration-300 hover:text-[#67bc6a]"
       >
         +62 811 388 2070
       </a>
@@ -138,7 +138,7 @@ const contactItems: {
     value: (
       <a
         href="mailto:booking@sahanavillas.com"
-        className="transition-colors duration-300 hover:text-[#C4963A]"
+        className="transition-colors duration-300 hover:text-[#67bc6a]"
       >
         booking@sahanavillas.com
       </a>
@@ -222,7 +222,7 @@ const labelStyle = {
   fontWeight: 500,
   letterSpacing: "0.2em",
   textTransform: "uppercase" as const,
-  color: "#C4963A",
+  color: "#67bc6a",
 };
 
 const valueStyle = {
@@ -230,7 +230,7 @@ const valueStyle = {
   fontSize: "14px",
   fontWeight: 300,
   lineHeight: 1.7,
-  color: "#1C2E20",
+  color: "#1A1A1A",
 };
 
 function ContactItem({
@@ -246,7 +246,7 @@ function ContactItem({
     <div>
       <div
         className="mb-5"
-        style={{ height: "1px", backgroundColor: "#C4963A", opacity: 0.35 }}
+        style={{ height: "1px", backgroundColor: "#67bc6a", opacity: 0.35 }}
       />
       <div className="flex gap-4">
         <div className="shrink-0 pt-0.5">{icon}</div>
@@ -302,14 +302,14 @@ function fieldBorderStyle(hasError: boolean, isFocused = false) {
       hasError
         ? "rgba(220, 100, 100, 0.7)"
         : isFocused
-          ? "#C4963A"
-          : "rgba(255,255,255,0.2)"
+          ? "#67bc6a"
+          : "rgba(26, 26, 26, 0.2)"
     }`,
   };
 }
 
 const inputClassName =
-  "w-full bg-transparent py-2.5 text-white outline-none transition-colors duration-300 placeholder:text-white/30";
+  "w-full bg-transparent py-2.5 text-[#1A1A1A] outline-none transition-colors duration-300 placeholder:text-[#6B6B6B]/60";
 
 const inputStyle = {
   fontFamily: "var(--font-inter)",
@@ -367,7 +367,7 @@ export default function ContactSection() {
     <section className="grid grid-cols-1 lg:grid-cols-2">
       <div className="bg-[#F7F3EE] px-6 py-12 md:px-[60px] md:py-16 lg:py-[80px]">
         <h2
-          className="mb-10 text-[#1C2E20]"
+          className="mb-10 text-[#1A1A1A]"
           style={{
             fontFamily: "var(--font-cormorant)",
             fontSize: "36px",
@@ -401,7 +401,7 @@ export default function ContactSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="text-[#1C2E20] transition-colors duration-300 hover:text-[#C4963A]"
+                className="text-[#1A1A1A] transition-colors duration-300 hover:text-[#67bc6a]"
               >
                 {"isTripAdvisor" in social && social.isTripAdvisor ? (
                   <Image
@@ -421,12 +421,12 @@ export default function ContactSection() {
         </div>
       </div>
 
-      <div className="bg-[#1C2E20] px-6 py-12 md:px-[60px] md:py-16 lg:py-[80px]">
+      <div className="bg-[#c1bab2] px-6 py-12 md:px-[60px] md:py-16 lg:py-[80px]">
         {submitted ? (
           <div className="flex min-h-[400px] flex-col items-center justify-center px-4 text-center">
             <CheckIcon />
             <p
-              className="mt-6 max-w-md text-white"
+              className="mt-6 max-w-md text-[#1A1A1A]"
               style={{
                 fontFamily: "var(--font-cormorant)",
                 fontSize: "clamp(1.5rem, 3vw, 2rem)",
@@ -442,7 +442,7 @@ export default function ContactSection() {
         ) : (
           <>
             <h2
-              className="mb-3 text-white"
+              className="mb-3 text-[#1A1A1A]"
               style={{
                 fontFamily: "var(--font-cormorant)",
                 fontSize: "36px",
@@ -459,7 +459,7 @@ export default function ContactSection() {
                 fontSize: "13px",
                 fontWeight: 300,
                 lineHeight: 1.7,
-                color: "rgba(255,255,255,0.6)",
+                color: "rgba(26, 26, 26, 0.6)",
               }}
             >
               Fill in the form below and our team will get back to you within 24
@@ -556,7 +556,7 @@ export default function ContactSection() {
                     onChange={(e) => updateField("arrivalDate", e.target.value)}
                     onFocus={() => setFocusedField("arrivalDate")}
                     onBlur={() => setFocusedField(null)}
-                    className={`${inputClassName} [color-scheme:dark]`}
+                    className={`${inputClassName} [color-scheme:light]`}
                     style={{ ...inputStyle, ...borderFor("arrivalDate", fieldError("arrivalDate")) }}
                   />
                 </FormField>
@@ -573,7 +573,7 @@ export default function ContactSection() {
                     onChange={(e) => updateField("departureDate", e.target.value)}
                     onFocus={() => setFocusedField("departureDate")}
                     onBlur={() => setFocusedField(null)}
-                    className={`${inputClassName} [color-scheme:dark]`}
+                    className={`${inputClassName} [color-scheme:light]`}
                     style={{ ...inputStyle, ...borderFor("departureDate", fieldError("departureDate")) }}
                   />
                 </FormField>
@@ -595,11 +595,11 @@ export default function ContactSection() {
                     className={`${inputClassName} cursor-pointer appearance-none`}
                     style={{ ...inputStyle, ...borderFor("adults", fieldError("adults")) }}
                   >
-                    <option value="" disabled className="bg-[#1C2E20]">
+                    <option value="" disabled className="bg-[#c1bab2]">
                       Select
                     </option>
                     {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
-                      <option key={n} value={String(n)} className="bg-[#1C2E20]">
+                      <option key={n} value={String(n)} className="bg-[#c1bab2]">
                         {n}
                       </option>
                     ))}
@@ -616,7 +616,7 @@ export default function ContactSection() {
                     style={{ ...inputStyle, ...borderFor("children", false) }}
                   >
                     {Array.from({ length: 7 }, (_, i) => i).map((n) => (
-                      <option key={n} value={String(n)} className="bg-[#1C2E20]">
+                      <option key={n} value={String(n)} className="bg-[#c1bab2]">
                         {n}
                       </option>
                     ))}
@@ -644,7 +644,7 @@ export default function ContactSection() {
                     type="checkbox"
                     checked={form.agreeTerms}
                     onChange={(e) => updateField("agreeTerms", e.target.checked)}
-                    className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-[#C4963A]"
+                    className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-[#67bc6a]"
                     style={{
                       outline: fieldError("agreeTerms")
                         ? "1px solid rgba(220, 100, 100, 0.7)"
@@ -657,7 +657,7 @@ export default function ContactSection() {
                       fontSize: "12px",
                       fontWeight: 300,
                       lineHeight: 1.6,
-                      color: "rgba(255,255,255,0.65)",
+                      color: "rgba(26, 26, 26, 0.65)",
                     }}
                   >
                     I agree to be contacted by the Sahana Villas team regarding
@@ -681,7 +681,7 @@ export default function ContactSection() {
               <div>
                 <button
                   type="submit"
-                  className="btn-alive w-full bg-[#C4963A] py-4 text-[#1C2E20] transition-colors duration-300 hover:bg-[#b8872e]"
+                  className="btn-alive w-full bg-[#67bc6a] py-4 text-white transition-colors duration-300 hover:bg-[#5aaa5d]"
                   style={{
                     fontFamily: "var(--font-inter)",
                     fontSize: "11px",
@@ -699,7 +699,7 @@ export default function ContactSection() {
                     fontSize: "11px",
                     fontWeight: 300,
                     lineHeight: 1.6,
-                    color: "rgba(255,255,255,0.45)",
+                    color: "rgba(26, 26, 26, 0.45)",
                   }}
                 >
                   We typically respond within 24 hours. For urgent enquiries

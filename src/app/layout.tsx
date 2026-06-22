@@ -34,7 +34,7 @@ export default function RootLayout({
       <body className="antialiased">
         <TopBanner />
         <Header />
-        {children}
+        <main>{children}</main>
         <ChatBot />
       </body>
     </html>

@@ -116,7 +116,7 @@ export default function FamilySafetyCarousel() {
                 style={{
                   width: activeIndex === index ? "20px" : "8px",
                   backgroundColor:
-                    activeIndex === index ? "#C4963A" : "rgba(255, 255, 255, 0.85)",
+                    activeIndex === index ? "#67bc6a" : "rgba(255, 255, 255, 0.85)",
                   transform: activeIndex === index ? "scale(1.3)" : "scale(1)",
                   boxShadow:
                     activeIndex === index
@@ -134,7 +134,7 @@ export default function FamilySafetyCarousel() {
           style={{ opacity: 1 }}
         >
           <p
-            className="mb-3 text-[#C4963A]"
+            className="mb-3 text-[#67bc6a]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "11px",
@@ -146,7 +146,7 @@ export default function FamilySafetyCarousel() {
             {activeSlide.eyebrow}
           </p>
           <h2
-            className="mb-6 text-[#1C2E20]"
+            className="mb-6 text-[#1A1A1A]"
             style={{
               fontFamily: "var(--font-cormorant)",
               fontSize: "clamp(2rem, 3.5vw, 2.5rem)",
@@ -169,7 +169,7 @@ export default function FamilySafetyCarousel() {
           </p>
           <Link
             href={activeSlide.buttonHref}
-            className="btn-alive inline-block border border-[#C4963A] bg-[#C4963A] px-8 py-3 text-white transition-all duration-300 hover:bg-transparent hover:text-[#C4963A]"
+            className="btn-alive inline-block border border-[#67bc6a] bg-[#67bc6a] px-8 py-3 text-white transition-all duration-300 hover:bg-[#5aaa5d] hover:text-white"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "11px",

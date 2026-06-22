@@ -13,7 +13,7 @@ const iconProps = {
   height: 44,
   viewBox: "0 0 24 24",
   fill: "none",
-  stroke: "#C4963A",
+  stroke: "#67bc6a",
   strokeWidth: 1.2,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
@@ -179,7 +179,7 @@ function FeatureRow({
       style={{
         width: "1px",
         height: "60px",
-        backgroundColor: "#C4963A",
+        backgroundColor: "#67bc6a",
         opacity: 0.35,
       }}
     />
@@ -270,7 +270,7 @@ export default function Features() {
       <div className="mx-auto max-w-4xl px-6 lg:px-10">
         <div className="mb-12 text-center">
           <p
-            className="mb-3 text-[#C4963A]"
+            className="mb-3 text-[#67bc6a]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "11px",

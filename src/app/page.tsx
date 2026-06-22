@@ -11,7 +11,7 @@ const Story = dynamic(() => import("@/components/Story"), {
   loading: () => (
     <section
       id="families"
-      className="relative w-full overflow-hidden bg-[#1C2E20]"
+      className="relative w-full overflow-hidden bg-[#c1bab2]"
       style={{ minHeight: "400px" }}
       aria-hidden="true"
     />
@@ -20,7 +20,7 @@ const Story = dynamic(() => import("@/components/Story"), {
 
 export default function Home() {
   return (
-    <main>
+    <>
       <Hero />
       <Carousel />
       <About />
@@ -29,6 +29,6 @@ export default function Home() {
       <Testimonials />
       <Location />
       <Footer />
-    </main>
+    </>
   );
 }

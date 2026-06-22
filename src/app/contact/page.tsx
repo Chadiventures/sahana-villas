@@ -9,7 +9,7 @@ const ContactHeroVideo = dynamic(
   {
     loading: () => (
       <div
-        className="absolute inset-0 h-full w-full bg-[#1C2E20]"
+        className="absolute inset-0 h-full w-full bg-[#c1bab2]"
         aria-hidden="true"
       />
     ),
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main>
+    <>
       <section
-        className="relative flex flex-col items-center justify-center overflow-hidden px-6 text-center"
+        className="relative -mt-[80px] flex flex-col items-center justify-center overflow-hidden px-6 text-center"
         style={{
           height: "40vh",
           minHeight: "280px",
@@ -41,7 +41,7 @@ export default function ContactPage() {
 
         <div className="relative z-10">
           <p
-            className="mb-3 text-[#C4963A]"
+            className="mb-3 text-[#67bc6a]"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "11px",
@@ -75,7 +75,7 @@ export default function ContactPage() {
               color: "rgba(255,255,255,0.6)",
             }}
           >
-            <Link href="/" className="transition-colors hover:text-[#C4963A]">
+            <Link href="/" className="transition-colors hover:text-[#67bc6a]">
               Home
             </Link>
             <span className="mx-2">/</span>
@@ -86,6 +86,6 @@ export default function ContactPage() {
 
       <ContactSection />
       <Footer />
-    </main>
+    </>
   );
 }
